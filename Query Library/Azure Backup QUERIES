@@ -157,7 +157,7 @@ AzureDiagnostics
 | sort by SourceName asc 
 
 // Table of VM Inventory Across Workspaces with Most Recent Protection State (Add Workspaces as needed)
-// Replace workspaceName with a valide Workspace Name, between the quotation marks
+// Replace workspaceName with a valid Workspace Name, between the quotation marks
 let ProtectionDetail = datatable (ProtectionState_s: string, Verbose: string)
 [
     "ProtectionStopped", "Backup is disabled. Please re-enable it in the Vault: ",
