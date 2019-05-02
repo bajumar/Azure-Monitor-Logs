@@ -1,0 +1,179 @@
+Snippets to Simplify Queries
+
+// Snippet: Operator to Convert Numeric Data into Valid Types for Calculations and Charts
+| extend VAR = todouble(FIELD)
+
+// Snippet: RegEx to Extract Backup Source Substrings from BackupItemUniqueId_s
+| extend SourceAzureRegion = extract("([^;]+);", 1, BackupItemUniqueId_s)
+| extend SourceResourceGroup = extract(".+;(.+);", 1, BackupItemUniqueId_s)
+| extend SourceName =  extract("([^;]+$)", 1, BackupItemUniqueId_s)
+
+// Snippet: Filter on Azure VM Sources Only
+| where BackupManagementType_s == "IaaSVM"
+
+
+Query Examples
+
+// Table of Backup Report Logs with All Details
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+
+// Table of Backup Configuration Jobs Status for All Sources
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where JobOperation_s == "ConfigureBackup" and JobStartDateTime_s contains "Z" 
+| extend SourceName =  extract("([^;]+$)", 1, BackupItemUniqueId_s)
+| extend JobMinutes = todouble(JobDurationInSecs_s) / 60
+| project SourceName, JobStatus_s, JobFailureCode_s, JobStartDateTime_s, JobMinutes, Vault = Resource
+| sort by SourceName asc
+
+// Table of Backup Jobs Status for All Sources
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where JobOperation_s == "Backup" and JobStartDateTime_s contains "Z" 
+| extend SourceName =  extract("([^;]+$)", 1, BackupItemUniqueId_s)
+| extend JobMinutes = todouble(JobDurationInSecs_s) / 60
+| project SourceName, JobStatus_s, JobFailureCode_s, JobStartDateTime_s, JobMinutes, Vault = Resource
+| sort by SourceName asc
+
+// Table of Restore Jobs Status for All Sources
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where JobOperation_s == "Restore" and JobStartDateTime_s contains "Z" 
+| extend SourceName =  extract("([^;]+$)", 1, BackupItemUniqueId_s)
+| extend JobMinutes = todouble(JobDurationInSecs_s) / 60
+| project SourceName, JobStatus_s, JobFailureCode_s, JobStartDateTime_s, JobMinutes, Vault = Resource
+| sort by SourceName asc
+
+// Table of Backup Alerts, by Source
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where AlertCode_s != ""
+| extend SourceName =  extract("([^;]+$)", 1, BackupItemUniqueId_s)
+| project SourceName, AlertCode_s, AlertSeverity_s, AlertStatus_s , AlertOccurrenceDateTime_s
+| sort by SourceName asc
+
+// Table of Backup Job Duration in Minutes, by Source (Can be used with "Restore" filter)
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where JobOperation_s == "Backup" and JobStatus_s == "Completed" and JobStartDateTime_s contains "Z" 
+| extend SourceName =  extract("([^;]+$)", 1, BackupItemUniqueId_s)
+| extend JobMinutes = todouble(JobDurationInSecs_s) / 60
+| project SourceName, JobMinutes
+| order by JobMinutes desc 
+
+// Pie Chart of Completed vs Failed Backup Jobs (use "Split By" in UI to see Sources)
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where JobOperation_s == "Backup"
+| extend SourceName =  extract("([^;]+$)", 1, BackupItemUniqueId_s)
+| summarize AggregatedValue = dcount(JobUniqueId_g) by JobStatus_s, SourceName
+| order by AggregatedValue desc
+| render piechart
+
+// Line Chart Trend of Backup Job Duration in Minutes, by Source (Can be used with "Restore" filter)
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where JobOperation_s == "Backup" and JobStatus_s == "Completed" and JobStartDateTime_s contains "Z" 
+| extend SourceName =  extract("([^;]+$)", 1, BackupItemUniqueId_s)
+| extend JobMinutes = todouble(JobDurationInSecs_s) / 60
+| project JobStartDateTime_s, SourceName, JobMinutes
+| order by JobStartDateTime_s desc 
+| render timechart 
+
+// Line Chart Trend of MB Data Transferred per Backup Job, by Source (Can be used with "Restore" filter)
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where JobOperation_s == "Backup" and JobStatus_s == "Completed" and JobStartDateTime_s contains "Z"
+| extend SourceName =  extract("([^;]+$)", 1, BackupItemUniqueId_s)
+| extend DataMB = todouble(DataTransferredInMB_s) 
+| project JobStartDateTime_s, SourceName, DataMB
+| order by JobStartDateTime_s desc
+| render timechart
+
+// Line Chart Trend of Storage Consumption, in Total
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where StorageConsumedInMBs_s != ""
+| extend CloudStorageInGB = todouble(StorageConsumedInMBs_s) / 1024
+| summarize sum(CloudStorageInGB) by bin(TimeGenerated, 1d)
+| render timechart
+
+// Line Chart Trend of Storage Consumption, by Source
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where StorageConsumedInMBs_s != "" 
+| extend SourceName =  extract("([^;]+$)", 1, BackupItemUniqueId_s)
+| extend CloudStorageInGB = todouble(StorageConsumedInMBs_s) / 1024
+| summarize sum(CloudStorageInGB) by bin(TimeGenerated, 1d), SourceName
+| render timechart
+
+// Line Chart Trend of Storage Consumption, by Recovery Vault
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where StorageConsumedInMBs_s != ""
+| extend CloudStorageInGB = todouble(StorageConsumedInMBs_s) / 1024
+| summarize sum(CloudStorageInGB) by bin(TimeGenerated, 1d), Vault = Resource
+| render timechart
+
+// Line Chart Trend of Storage Consumption, by Resource Group
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where StorageConsumedInMBs_s != ""
+| extend CloudStorageInGB = todouble(StorageConsumedInMBs_s) / 1024
+| summarize sum(CloudStorageInGB) by bin(TimeGenerated, 1d), ResourceGroup
+| render timechart
+
+// Line Chart Trend of Storage Consumption, by Subscription ID
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where StorageConsumedInMBs_s != ""
+| extend CloudStorageInGB = todouble(StorageConsumedInMBs_s) / 1024
+| summarize sum(CloudStorageInGB) by bin(TimeGenerated, 1d), SubscriptionId
+| render timechart
+
+// Line Chart Trend of Storage Consumption, by Subscription Friendly Name
+let SubscriptionMap = datatable (SubscriptionId: string, SubscriptionName: string)
+[
+	"subscriptionGUID", "subscriptionFriendlyName",
+];
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where StorageConsumedInMBs_s != ""
+| extend CloudStorageInGB = todouble(StorageConsumedInMBs_s) / 1024
+| join kind = leftouter (
+	SubscriptionMap
+	)  on SubscriptionId
+| summarize sum(CloudStorageInGB) by bin(TimeGenerated, 1d), SubscriptionName
+| render timechart
+
+// Table of Protected Sources with Most Recent Protection State
+AzureDiagnostics
+| where Category == "AzureBackupReport"
+| where ProtectionState_s !=  ""
+| summarize hint.strategy = partitioned arg_max(TimeGenerated, *) by BackupItemFriendlyName_s
+| project SourceName = BackupItemFriendlyName_s, ProtectionState_s, Vault = Resource, TimeGenerated
+| sort by SourceName asc 
+
+// Table of VM Inventory Across Workspaces with Most Recent Protection State (Add Workspaces as needed)
+let ProtectionDetail = datatable (ProtectionState_s: string, Verbose: string)
+[
+    "ProtectionStopped", "Backup is disabled. Please re-enable it in the Vault: ",
+    "Protected", "Backup is configured in the Vault: ",
+];
+( AzureDiagnostics
+    | where Category == "AzureBackupReport"
+    | where ProtectionState_s != ""
+    | summarize hint.strategy = partitioned arg_max(TimeGenerated, *) by BackupItemFriendlyName_s )
+| join kind = rightouter (
+    union Heartbeat, workspace("*workspaceName*").Heartbeat
+    | summarize hint.strategy = partitioned arg_max(TimeGenerated, *) by Computer
+    | project BackupItemFriendlyName_s = Computer )
+    on BackupItemFriendlyName_s
+| join kind = leftouter (
+    ProtectionDetail )
+    on ProtectionState_s
+| extend BackupState = iif(isempty(ProtectionState_s),"Unprotected",ProtectionState_s)
+| extend Description = iif(isempty(ProtectionState_s),"Backup is not configured.", Verbose)
+| project SourcerName= BackupItemFriendlyName_s1 , BackupState , Explanation = strcat (Description, Resource)
+| sort by SourceName asc
