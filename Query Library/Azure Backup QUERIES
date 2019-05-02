@@ -1,4 +1,4 @@
-Snippets to Simplify Queries
+Snippets Used to Simplify Queries
 
 // Snippet: Operator to Convert Numeric Data into Valid Types for Calculations and Charts
 | extend VAR = todouble(FIELD)
@@ -133,6 +133,7 @@ AzureDiagnostics
 | render timechart
 
 // Line Chart Trend of Storage Consumption, by Subscription Friendly Name
+// Replace subscriptionGUID and subscriptionFriendlyName with a valid Subscription GUID and Name, between the quoation marks
 let SubscriptionMap = datatable (SubscriptionId: string, SubscriptionName: string)
 [
 	"subscriptionGUID", "subscriptionFriendlyName",
@@ -156,6 +157,7 @@ AzureDiagnostics
 | sort by SourceName asc 
 
 // Table of VM Inventory Across Workspaces with Most Recent Protection State (Add Workspaces as needed)
+// Replace workspaceName with a valide Workspace Name, between the quotation marks
 let ProtectionDetail = datatable (ProtectionState_s: string, Verbose: string)
 [
     "ProtectionStopped", "Backup is disabled. Please re-enable it in the Vault: ",
@@ -166,7 +168,7 @@ let ProtectionDetail = datatable (ProtectionState_s: string, Verbose: string)
     | where ProtectionState_s != ""
     | summarize hint.strategy = partitioned arg_max(TimeGenerated, *) by BackupItemFriendlyName_s )
 | join kind = rightouter (
-    union Heartbeat, workspace("*workspaceName*").Heartbeat
+    union Heartbeat, workspace("workspaceName").Heartbeat
     | summarize hint.strategy = partitioned arg_max(TimeGenerated, *) by Computer
     | project BackupItemFriendlyName_s = Computer )
     on BackupItemFriendlyName_s
@@ -177,3 +179,4 @@ let ProtectionDetail = datatable (ProtectionState_s: string, Verbose: string)
 | extend Description = iif(isempty(ProtectionState_s),"Backup is not configured.", Verbose)
 | project SourcerName= BackupItemFriendlyName_s1 , BackupState , Explanation = strcat (Description, Resource)
 | sort by SourceName asc
+
