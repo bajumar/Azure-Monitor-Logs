@@ -1,4 +1,4 @@
-# Azure Backup Queries Prerequisites #
+# Azure Backup Queries Prerequisites
 	
 1. Configure Recovery Vault to send logs to your Log Analytics Workspace - https://azure.microsoft.com/en-us/blog/oms-monitoring-solution-for-azure-backup-using-azure-log-analytics/
 
