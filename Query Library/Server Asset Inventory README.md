@@ -1,8 +1,6 @@
 # Server Asset Inventory Queries Prerequisites & Comments
 
-The quality of the results from these queries depend on the solutions that are enabled, so I will be including several examples based on various solutions and solution combinations. In particular, the Service Map solution will collect the most relevant data for creating effective queries in this category.
-
-Enable Service Map - https://docs.microsoft.com/en-us/azure/azure-monitor/insights/service-map-configure
+The queries in this category are focused on basic Asset Inventory, retrieving data such as Operating System versions, Proccessor counts, Memory and Disk allocation, etc. The quality of the results from these queries depend on the solutions that are enabled, so I will be including several examples based on various solutions and solution combinations. In particular, the Service Map solution will collect the most relevant data for creating effective queries in this category.
 
 **About Piecharts...**
 
@@ -20,4 +18,12 @@ The relevant queries in this repo assume that the logged version numbers are for
 
 Servce Map collects a richer dataset, including Azure-specific configuration information such as VM Size and Region, so the construction of relevant queries is much simpler. The queries in this section also feature "pretty" column names, which support the use of spaces and special characters.
 
+Enable Service Map - https://docs.microsoft.com/en-us/azure/azure-monitor/insights/service-map-configure
+
 *Entity pretty names: https://docs.microsoft.com/en-us/azure/kusto/query/schema-entities/entity-names#entity-pretty-names*
+
+**Perf-based Query Examples**
+
+Enabling Performance Counter data collection supports the ability to derive, or calculate, additional "hardware" inventory information. The required Performance Counters are specified in the comments header of each query example.
+
+Enable Performance Data Sources - https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-sources-performance-counters
