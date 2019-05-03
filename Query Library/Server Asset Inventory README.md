@@ -2,7 +2,7 @@
 
 **About Piecharts...**
 
-In queries that generate piecharts the "render" operator currently supports only the basic piechart type, so the chart cannot be refined with pre-selected values or chart subtypes (such as *doughnut*) from within the query. I recommend manually editing the chart to your liking before saving or pinning the view to maximize the utility and impact of the vizualization.
+In queries that generate piecharts the "render" operator currently supports only the basic piechart type, so the chart cannot be refined with pre-selected values or chart subtypes (such as *doughnut*) from within the query. I recommend editing the chart to your liking before saving or pinning the view to maximize the utility and impact of the vizualization.
 
 **Heartbeat-based Query Examples**
 
