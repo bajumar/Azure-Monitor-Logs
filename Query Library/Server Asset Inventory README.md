@@ -16,3 +16,8 @@ The relevant queries in this repo assume that the logged version numbers are for
 
 *Reference: https://docs.microsoft.com/en-us/windows/desktop/SysInfo/operating-system-version*
 
+**ServiceMap-based Query Examples**
+
+Servce Map collects a richer dataset, including Azure-specific configuration information such as VM Size and Region, so the construction of relevant queries is much simpler. The queries in this section also feature "pretty" column names, which allow you to use spaces and special characters.
+
+*Entity pretty names: https://docs.microsoft.com/en-us/azure/kusto/query/schema-entities/entity-names#entity-pretty-names*
