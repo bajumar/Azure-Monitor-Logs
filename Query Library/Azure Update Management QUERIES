@@ -1,0 +1,15 @@
+Query Examples
+
+// Table of Needed Updates for Windows Computers, by Computer
+Update
+| where OSType != "Linux" and UpdateState == "Needed"
+| summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
+| project Computer, Product, Classification, MSRCSeverity, KBID, Title, RebootBehavior
+| sort by Computer, Product, Classification, MSRCSeverity, KBID desc
+
+// Table of Needed Updates for Linux Computers, by Computer
+Update
+| where OSType == "Linux" and UpdateState == "Needed"
+| summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
+| project Computer, OSName, Classification, PackageSeverity, BulletinID, CVENumbers
+| sort by Computer, OSName, Classification, PackageSeverity, BulletinID desc
