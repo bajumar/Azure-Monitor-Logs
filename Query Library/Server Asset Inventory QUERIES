@@ -101,3 +101,32 @@ ServiceMapComputer_CL
 | summarize count() by ["Azure Region"], ["Azure VM Size"], ["Operating System"], Computer
 | render piechart
 
+
+Perf-based Query Examples
+
+// Table of Processor Count, by Computer
+// Requires enabling at least one Windows\Linux "Processor(*)\..." performance counter
+Perf
+| where ObjectName == "Processor" and InstanceName != "_Total"
+| summarize Processors = dcount(InstanceName) by Computer
+| project Computer, Processors
+| sort by Computer asc
+
+// Table of Disk Count, by Computer (including the ephemeral disk in Azure VMs)
+// Requires enabling at least one Windows "LogicalDisk(*)\..." and Linux "Physical Disk(*)\..." performance counter
+Perf
+| where ObjectName == "LogicalDisk" or ObjectName == "Physical Disk"
+| where InstanceName != "_Total" and InstanceName !startswith "Harddisk"
+| summarize Disks = dcount(InstanceName) by Computer
+| project Computer, Disks
+| sort by Computer asc
+
+// Table of Assgined Disks, by Computer (including the ephemeral disk in Azure VMs)
+// Requires enabling at least one Windows "LogicalDisk(*)\..." and Linux "Physical Disk(*)\..." performance counter
+Perf
+| where ObjectName == "LogicalDisk" or ObjectName == "Physical Disk"
+| where InstanceName != "_Total" and InstanceName !startswith "Harddisk"
+| summarize makeset(InstanceName) by Computer
+| project Computer, ["Assigned Disks"] = set_InstanceName
+| sort by Computer asc
+
