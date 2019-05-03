@@ -1,6 +1,6 @@
 # Server Asset Inventory Queries Prerequisites & Comments
 
-The quality of the results from these queries will on the solutions that are enabled, so I will be including several examples based on various solutions and solution combinations. In particular, the Service Map solution will collect the most relevant data for creating effective queries in this category.
+The quality of the results from these queries depend on the solutions that are enabled, so I will be including several examples based on various solutions and solution combinations. In particular, the Service Map solution will collect the most relevant data for creating effective queries in this category.
 
 Enable Service Map - https://docs.microsoft.com/en-us/azure/azure-monitor/insights/service-map-configure
 
