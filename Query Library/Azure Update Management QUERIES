@@ -18,21 +18,38 @@ Update
 Update
 | where UpdateState == "Needed"
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
+| extend OSType = iff(isempty(OSType), "Windows", OSType)
 | extend UpdateFor = iff(isempty(OSName), Product, OSName)
 | extend Severity = iff(isempty(PackageSeverity), MSRCSeverity, PackageSeverity)
 | extend ID = iff(isempty(BulletinID), iff(isnotempty(KBID),strcat("KB: ",KBID),""), strcat("Bulletin: ", BulletinID))
 | extend Description = iff(isempty(CVENumbers), Title, CVENumbers)
-| project Computer, UpdateFor , Classification, Severity, ID, Description, RebootBehavior
+| project Computer, OSType, UpdateFor , Classification, Severity, ID, Description, RebootBehavior
 | sort by Computer asc
 
-/ Table of Needed Operating System Updates for All (Windows and Linux) Computers as of the last scan, by Computer
+// Table of Needed Operating System Updates for All (Windows and Linux) Computers as of the last scan, by Computer
 Update
 | where UpdateState == "Needed"
 | where Product startswith "Windows Server" or OSName != ""
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
+| extend OSType = iff(isempty(OSType), "Windows", OSType)
 | extend UpdateFor = iff(isempty(OSName), Product, OSName)
 | extend Severity = iff(isempty(PackageSeverity), MSRCSeverity, PackageSeverity)
 | extend ID = iff(isempty(BulletinID), iff(isnotempty(KBID),strcat("KB: ",KBID),""), strcat("Bulletin: ", BulletinID))
 | extend Description = iff(isempty(CVENumbers), Title, CVENumbers)
-| project Computer, UpdateFor , Classification, Severity, ID, Description, RebootBehavior
+| project Computer, OSType, UpdateFor , Classification, Severity, ID, Description, RebootBehavior
 | sort by Computer asc
+
+// Pie Chart of Needed Operating System Updates for All (Windows and Linux) Computers as of the last scan
+// Before saving or pinning, enable the "Split By" values of your preference to make the visulaization more impactful
+Update
+| where UpdateState == "Needed"
+| where Product startswith "Windows Server" or OSName != ""
+| summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
+| extend OSType = iff(isempty(OSType), "Windows", OSType)
+| extend UpdateFor = iff(isempty(OSName), Product, OSName)
+| extend Severity = iff(isempty(PackageSeverity), MSRCSeverity, PackageSeverity)
+| extend ID = iff(isempty(BulletinID), iff(isnotempty(KBID),strcat("KB: ",KBID),""), strcat("Bulletin: ", BulletinID))
+| extend Description = iff(isempty(CVENumbers), Title, CVENumbers)
+| project Computer, OSType, UpdateFor , Classification, Severity, ID, Description, RebootBehavior
+| summarize count() by OSType, UpdateFor , Classification, Severity, ID, Computer
+| render piechart
