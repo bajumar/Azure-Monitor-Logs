@@ -73,3 +73,31 @@ Heartbeat
 | summarize count() by ComputerEnvironment, OSType, OSName
 | render piechart
 
+
+ServiceMap-based Query Examples
+
+// Table of All Computer Configurations as of the last inventory, by Comptuer
+// You can also generate useful charts from the data returned by this query
+ServiceMapComputer_CL
+| summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer
+| extend OperatingSystem = extract("([^,]+$)", 1, OperatingSystemFullName_s)
+| extend AKSRegion = extract("([^_]+$)", 1, AzureResourceGroup_s)
+| extend MemoryGB = round(PhysicalMemory_d/1024)
+| extend AzureVM = iff(isempty(HostingProvider_s), "N/A - not an Azure VM", iff(Computer startswith "aks", "N/A - AKS Container", AzureVMSize_s))
+| extend AzureRegion = iff(isempty(HostingProvider_s), "N/A - not an Azure VM", iff(Computer startswith "aks", AKSRegion, AzureLocation_s))
+| project Computer, OperatingSystem, Processors = Cpus_d, MemoryGB, MemoryKB = PhysicalMemory_d, Addresses = Ipv4Addresses_s, AzureVM, AzureRegion
+| sort by Computer
+
+// Pie Chart of All Computer Configurations, without virtual hardware details
+// Before saving or pinning, enable the "Split By" values of your preference to make the visulaization more impactful
+ServiceMapComputer_CL
+| summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer
+| extend OperatingSystem = extract("([^,]+$)", 1, OperatingSystemFullName_s)
+| extend AKSRegion = extract("([^_]+$)", 1, AzureResourceGroup_s)
+| extend MemoryGB = round(PhysicalMemory_d/1024)
+| extend AzureVM = iff(isempty(HostingProvider_s), "N/A - not an Azure VM", iff(Computer startswith "aks", "N/A - AKS Container", AzureVMSize_s))
+| extend AzureRegion = iff(isempty(HostingProvider_s), "N/A - not an Azure VM", iff(Computer startswith "aks", AKSRegion, AzureLocation_s))
+| project Computer, OperatingSystem, AzureVM, AzureRegion
+| summarize count() by AzureRegion, AzureVM, OperatingSystem, Computer
+| render piechart
+
