@@ -1,6 +1,6 @@
 # Server Asset Inventory Queries Prerequisites & Comments
 
-The accuracy of the information available for these queries will depend on the solutions that are enabled, so I will be including several examples based on various solution combinations.
+The accuracy of the results from these queries will depend on the solutions that are enabled, so I will be including several examples based on various solutions and solution combinations.
 
 **About Piecharts...**
 
