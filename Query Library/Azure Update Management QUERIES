@@ -20,8 +20,8 @@ Update
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
 | extend UpdateFor = iff(isempty(OSName), Product, OSName)
 | extend Severity = iff(isempty(PackageSeverity), MSRCSeverity, PackageSeverity)
-| extend Identifier = iff(isempty(BulletinID), iff(isnotempty(KBID),strcat("KB: ",KBID),""), strcat("Bulletin: ", BulletinID))
+| extend ID = iff(isempty(BulletinID), iff(isnotempty(KBID),strcat("KB: ",KBID),""), strcat("Bulletin: ", BulletinID))
 | extend Description = iff(isempty(CVENumbers), Title, CVENumbers)
-| project Computer, UpdateFor , Classification, Severity, Identifier, Description, RebootBehavior
+| project Computer, UpdateFor , Classification, Severity, ID, Description, RebootBehavior
 | sort by Computer asc
 
