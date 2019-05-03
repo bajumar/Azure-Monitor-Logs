@@ -1,15 +1,27 @@
 Query Examples
 
-// Table of Needed Updates for Windows Computers, by Computer
+// Table of Needed Updates for Windows Computers as of the last scan, by Computer
 Update
 | where OSType != "Linux" and UpdateState == "Needed"
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
 | project Computer, Product, Classification, MSRCSeverity, KBID, Title, RebootBehavior
 | sort by Computer, Product, Classification, MSRCSeverity, KBID desc
 
-// Table of Needed Updates for Linux Computers, by Computer
+// Table of Needed Updates for Linux Computers as of the last scan, by Computer
 Update
 | where OSType == "Linux" and UpdateState == "Needed"
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
 | project Computer, OSName, Classification, PackageSeverity, BulletinID, CVENumbers
 | sort by Computer, OSName, Classification, PackageSeverity, BulletinID desc
+
+// Table of Needed Updates for All (Windows and Linux) Computers as of the last scan, by Computer
+Update
+| where UpdateState == "Needed"
+| summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
+| extend UpdateFor = iff(isempty(OSName), Product, OSName)
+| extend Severity = iff(isempty(PackageSeverity), MSRCSeverity, PackageSeverity)
+| extend Identifier = iff(isempty(BulletinID), iff(isnotempty(KBID),strcat("KB: ",KBID),""), strcat("Bulletin: ", BulletinID))
+| extend Description = iff(isempty(CVENumbers), Title, CVENumbers)
+| project Computer, UpdateFor , Classification, Severity, Identifier, Description, RebootBehavior
+| sort by Computer, UpdateFor, Classification, Severity, Identifier desc
+
