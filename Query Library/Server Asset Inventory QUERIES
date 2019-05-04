@@ -106,6 +106,8 @@ Perf-based Query Examples
 
 // Table of Processor Count, by Computer
 // Requires enabling at least one Windows\Linux "Processor(*)\..." performance counter
+// The required Windows counter IS NOT included in the default recommended set for Windows
+// The required Linux counter IS included in the default recommended set for Linux
 Perf
 | where ObjectName == "Processor" and InstanceName != "_Total"
 | summarize Processors = dcount(InstanceName) by Computer
@@ -114,6 +116,8 @@ Perf
 
 // Table of Disk Count, by Computer (including the ephemeral disk in Azure VMs)
 // Requires enabling at least one Windows "LogicalDisk(*)\..." and Linux "Physical Disk(*)\..." performance counter
+// The required Windows counter IS included in the default recommended set for Windows
+// The required Linux counter IS NOT included in the default recommended set for Linux
 Perf
 | where ObjectName == "LogicalDisk" or ObjectName == "Physical Disk"
 | where InstanceName != "_Total" and InstanceName !startswith "Harddisk"
@@ -123,6 +127,8 @@ Perf
 
 // Table of Assgined Disks, by Computer (including the ephemeral disk in Azure VMs)
 // Requires enabling at least one Windows "LogicalDisk(*)\..." and Linux "Physical Disk(*)\..." performance counter
+// The required Windows counter IS included in the default recommended set for Windows
+// The required Linux counter IS NOT included in the default recommended set for Linux
 Perf
 | where ObjectName == "LogicalDisk" or ObjectName == "Physical Disk"
 | where InstanceName != "_Total" and InstanceName !startswith "Harddisk"
