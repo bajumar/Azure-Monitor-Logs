@@ -24,6 +24,6 @@ Enable Service Map - https://docs.microsoft.com/en-us/azure/azure-monitor/insigh
 
 **Perf-based Query Examples**
 
-Enabling Performance Counter data collection supports the ability to derive, or calculate, additional "hardware" inventory information. The required Performance Counters are specified in the comments header of each query example.
+Enabling performance counter data collection supports the ability to derive, or calculate, additional "hardware" inventory information. The required performance counters are specified in the comments header of each query example. Whenever possible, the query examples will leverage the minimum recommended set of performance counters for Windows and Linux which are identified when performance data collection is initially configured. 
 
 Enable Performance Data Sources - https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-sources-performance-counters
