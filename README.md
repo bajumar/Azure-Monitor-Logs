@@ -4,4 +4,6 @@ This repo contains everything related to Azure Monitor Logs that I have learned 
 
 Feedback and suggestions are always welcome.
 
-Disclosure & Disclaimer: I am currently a Microsoft employee, however, everything that I publish in this repo is my own personal work and of my own personal opinion. Content published in this repo is not officially approved or supported by Microsoft.
+**Disclosure & Disclaimer**
+
+I am currently a Microsoft employee, however, everything that I publish in this repo is my own personal work and of my own personal opinion. Content published in this repo is not officially approved or supported by Microsoft.
