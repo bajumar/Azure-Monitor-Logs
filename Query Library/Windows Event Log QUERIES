@@ -1,0 +1,6 @@
+Query Examples
+
+// Table of Event Log Sources and volume ingested, by Event Log and Source
+Event
+| summarize Events = count() by EventLog, Source
+| sort by EventLog asc, Source asc, Events
