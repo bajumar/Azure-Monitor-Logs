@@ -6,7 +6,6 @@ AzureActivity
 | summarize Activities = count() by Caller, OperationName
 | sort by Activities
 
-
 // Table of Users Logging Unauthorized Activities, by Reason and Caller
 AzureActivity
 | where ActivitySubstatus == "Unauthorized" and Caller has "@"
