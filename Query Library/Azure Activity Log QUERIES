@@ -1,0 +1,17 @@
+Query Examples
+
+// Table of Most Active Users and Their Operations, by Activities (Count)
+AzureActivity
+| where Caller has "@"
+| summarize Activities = count() by Caller, OperationName
+| sort by Activities
+
+
+// Table of Users Logging Unauthorized Activities, by Reason and Caller
+AzureActivity
+| where ActivitySubstatus == "Unauthorized" and Caller has "@"
+| extend eventProperties = parse_json(Properties)
+| extend eventStatus = tostring(parse_json(eventProperties.statusMessage))
+| extend Reason = extractjson("$.error.message", eventStatus)
+| project Reason, Caller, CallerIpAddress, OperationName , ResourceGroup, EventSubmissionTimestamp
+| sort by Reason asc, Caller asc
