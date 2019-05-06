@@ -1,0 +1,7 @@
+Azure Container Monitoring Query Examples
+
+// Table of Container Failures with Exit Code, by Failures (Count)
+ContainerInventory
+| where ContainerState == "Failed"
+| summarize Failures = dcount(ContainerID) by Computer, Image, ExitCode
+| sort by Failures
