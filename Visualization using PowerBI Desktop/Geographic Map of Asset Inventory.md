@@ -1,7 +1,7 @@
 
 # Geographic Map of Asset Inventory
 
-***UNDER CONSTRUCTION***
+![alt text](https://github.com/bajumar/Azure-Monitor-Logs/blob/master/Visualization%20using%20PowerBI%20Desktop/images/Geographic%20Map%20of%20Asset%20Inventory.PNG "Screen Capture")
 
 1. Run the following query in Azure Monitor Logs:
 
@@ -37,3 +37,12 @@
    </p>
 
 3. In PowerBI Desktop, select the **Map** visualization and drag the following **Fields** to their matching data points:
+
+   | Field | Map Data Point | Note |
+   | ---- | --- | --- |
+   | Computer | Size | |
+   | ComputerEnvironment | Legend | |
+   | RemoteIPLatitude | Latitude | Choose *"Don't summarize"* for the aggregation. |
+   | RemoteIPLongitude | Longitude | Choose *"Don't summarize"* for the aggregation. |
+
+   Note: If you prefer a simplified Country-level view you can drag the *RemoteIPCountry* field to the *Location* data point, however you cannot have both Location and the Lat/Long data points populated at the same time.
