@@ -3,7 +3,7 @@ Heartbeat-based Query Examples
 // Table of Computer Geo-Locations, by Computer
 Heartbeat
 | distinct Computer, ComputerEnvironment, RemoteIPCountry, RemoteIPLatitude, RemoteIPLongitude
-| sort by Computer
+| sort by Computer asc
 
 // Table of Linux OS versions as of the last Heartbeat, by Computer
 Heartbeat
