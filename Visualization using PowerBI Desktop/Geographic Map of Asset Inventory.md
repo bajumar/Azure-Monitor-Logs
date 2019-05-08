@@ -45,4 +45,4 @@
    | RemoteIPLatitude | Latitude | Choose *"Don't summarize"* for the aggregation. |
    | RemoteIPLongitude | Longitude | Choose *"Don't summarize"* for the aggregation. |
 
-   **Note:** If you prefer a simplified Country-level view you can drag the *RemoteIPCountry* field to the *Location* data point, however you cannot have both the *Location* and the combination of *Lat/Long* data points populated.
+   ***Note:*** If you prefer a simplified Country-level view you can drag the *RemoteIPCountry* field to the *Location* data point, however you cannot have both the *Location* and the combination of *Lat/Long* data points populated simultaneously.
