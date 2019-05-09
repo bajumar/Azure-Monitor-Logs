@@ -1,17 +1,17 @@
 # Visualization using PowerBI Desktop
 
-You can export a query to create PowerBI reports with more advanced visualizations - https://docs.microsoft.com/en-us/azure/azure-monitor/platform/powerbi
+You can export a query to create PowerBI reports with more advanced visualizations - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/powerbi>
 
 <details><summary>Click here for a summary of the instructions...</summary>
 <p>
 
-**In Azure Monitor Logs:**
+In *Azure Monitor Logs*:
 
 1. After running a query, in the menu bar select **Export > Power BI Query (M)** to generate a "PowerBIQuery.txt" file.
 
 2. Open the "PowerBIQuery.txt" text file and copy its contents.
 
-**In PowerBI Desktop:**
+In *PowerBI Desktop*:
 
 1. In the top menu bar click on the **Get Data** button and choose **Blank Query** to open the *Query Editor* window.
 
