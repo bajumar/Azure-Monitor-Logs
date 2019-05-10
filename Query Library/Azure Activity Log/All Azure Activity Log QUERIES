@@ -1,11 +1,12 @@
+// All Azure Activity Log QUERIES
 
-// Table of Most Active Users and Their Operations, by Activities (Count)
+// Table: Most Active Users & Their Operations
 AzureActivity
 | where Caller has "@"
 | summarize Activities = count() by Caller, OperationName
 | sort by Activities
 
-// Table of Users Logging Unauthorized Activities, by Reason and Caller
+// Table: Users Performing Unauthorized Activities
 AzureActivity
 | where ActivitySubstatus == "Unauthorized" and Caller has "@"
 | extend eventProperties = parse_json(Properties)
