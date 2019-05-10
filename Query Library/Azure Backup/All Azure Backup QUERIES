@@ -1,4 +1,3 @@
-Snippets Used to Simplify Queries
 
 // Snippet: Operator to Convert Numeric Data into Valid Types for Calculations and Charts
 | extend VAR = todouble(FIELD)
@@ -10,9 +9,6 @@ Snippets Used to Simplify Queries
 
 // Snippet: Filter on Azure VM Sources Only
 | where BackupManagementType_s == "IaaSVM"
-
-
-Query Examples
 
 // Table of Backup Report Logs with All Details
 AzureDiagnostics
