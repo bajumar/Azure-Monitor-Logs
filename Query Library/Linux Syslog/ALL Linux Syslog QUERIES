@@ -1,5 +1,6 @@
+// ALL Linux Syslog QUERIES
 
-// Table of Syslog Facilities and volume ingested, by Facility and Process
+// Table: Number of Events Ingested
 Syslog
 | summarize Events = count() by Facility, ProcessName
 | sort by Facility asc, ProcessName asc, Events
