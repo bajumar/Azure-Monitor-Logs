@@ -1,11 +1,9 @@
-Heartbeat-based Query Examples
-
-// Table of Computer Geo-Locations, by Computer
+// Heartbeat-Table: Computer Geo-Locations
 Heartbeat
 | distinct Computer, ComputerEnvironment, RemoteIPCountry, RemoteIPLatitude, RemoteIPLongitude
 | sort by Computer asc
 
-// Table of Linux OS versions as of the last Heartbeat, by Computer
+// Heartbeat-Table: Linux Versions
 Heartbeat
 | where OSType == "Linux"
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer
@@ -13,8 +11,7 @@ Heartbeat
 | project Computer, OSType, OSName, Version, ComputerIP, ComputerEnvironment
 | sort by Computer asc
 
-// Table of Windows OS versions as of the last Heartbeat, by Computer
-// Server is assumed, as OS version numbers are the same for equivalent Desktop and Server release
+// Heartbeat-Table: Windows Versions
 // Reference: https://docs.microsoft.com/en-us/windows/desktop/SysInfo/operating-system-version
 let VersionMap = datatable (Version: string, ReleaseName:string)
 [
@@ -35,8 +32,7 @@ Heartbeat
 | project Computer, OSType, OSName, Version, ComputerIP, ComputerEnvironment
 | sort by Computer asc
 
-// Table of All (Windows and Linux) OS versions as of the last Heartbeat, by Comptuer
-// Server is assumed, as OS version numbers are the same for equivalent Desktop and Server releases
+// Heartbeat-Table: Operating System Versions (Cross-Platform)
 // Reference: https://docs.microsoft.com/en-us/windows/desktop/SysInfo/operating-system-version
 let VersionMap = datatable (Version: string, ReleaseName:string)
 [
@@ -56,9 +52,7 @@ Heartbeat
 | project Computer, OSType, OSName, Version, ComputerIP, ComputerEnvironment
 | sort by Computer asc
 
-// Pie Chart of All (Windows and Linux) OS versions as of the last Heartbeat, by Environment, OSType, OSName
-// Before saving or pinning, enable both "Split By" values to make the visulaization more impactful
-// Server is assumed, as OS version numbers are the same for equivalent Desktop and Server releases
+// Heartbeat-PieChart: All Operating System Versions (Cross-Platform)
 // Reference: https://docs.microsoft.com/en-us/windows/desktop/SysInfo/operating-system-version
 let VersionMap = datatable (Version: string, ReleaseName:string)
 [
@@ -78,10 +72,7 @@ Heartbeat
 | summarize count() by ComputerEnvironment, OSType, OSName
 | render piechart
 
-
-ServiceMap-based Query Examples
-
-// Table of All Computer Configurations as of the last inventory, by Computer
+// ServiceMap-Table: ServiceMap Computer Hardware Configurations
 // You can also generate useful charts from the data returned by this query
 ServiceMapComputer_CL
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer
@@ -93,7 +84,7 @@ ServiceMapComputer_CL
 | project Computer, ["Operating System"], Processors = Cpus_d, ["Memory (GB)"], ["Memory (KB)"] = PhysicalMemory_d, ["IPv4 Address(es)"] = Ipv4Addresses_s, ["Azure VM Size"], ["Azure Region"]
 | sort by Computer
 
-// Pie Chart of All Computer Configurations, without virtual hardware details
+// ServiceMap-PieChart: ServiceMap Computer Azure Region Locations
 // Before saving or pinning, enable the "Split By" values of your preference to make the visulaization more impactful
 ServiceMapComputer_CL
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer
@@ -106,10 +97,7 @@ ServiceMapComputer_CL
 | summarize count() by ["Azure Region"], ["Azure VM Size"], ["Operating System"], Computer
 | render piechart
 
-
-Perf-based Query Examples
-
-// Table of Processor Count, by Computer
+// Perf-Table: Computer Processor Counts
 // Requires enabling at least one Windows\Linux "Processor(*)\..." performance counter
 // The required Windows counter IS NOT included in the default recommended set for Windows
 // The required Linux counter IS included in the default recommended set for Linux
@@ -119,7 +107,7 @@ Perf
 | project Computer, Processors
 | sort by Computer asc
 
-// Table of Disk Count, by Computer (including the ephemeral disk in Azure VMs)
+// Perf-Table: Computer Disk Counts
 // Requires enabling at least one Windows "LogicalDisk(*)\..." and Linux "Physical Disk(*)\..." performance counter
 // The required Windows counter IS included in the default recommended set for Windows
 // The required Linux counter IS NOT included in the default recommended set for Linux
@@ -130,7 +118,7 @@ Perf
 | project Computer, Disks
 | sort by Computer asc
 
-// Table of Assgined Disks, by Computer (including the ephemeral disk in Azure VMs)
+// Perf-Table: Computer Disk Enumeration
 // Requires enabling at least one Windows "LogicalDisk(*)\..." and Linux "Physical Disk(*)\..." performance counter
 // The required Windows counter IS included in the default recommended set for Windows
 // The required Linux counter IS NOT included in the default recommended set for Linux
@@ -141,10 +129,7 @@ Perf
 | project Computer, ["Assigned Disks"] = set_InstanceName
 | sort by Computer asc
 
-
-Multi-Table Query Examples
-
-// Table of All Computer Configurations as of the last inventory, including Assigned Disks, by Comptuer
+// Multi-Table: Computer Hardware Configurations
 // Requires enabling at least one Windows "LogicalDisk(*)\..." and Linux "Physical Disk(*)\..." performance counter
 // The required Windows counter IS included in the default recommended set for Windows
 // The required Linux counter IS NOT included in the default recommended set for Linux
