@@ -1,6 +1,6 @@
 # Geographic Map of Computers Correlated with Known Malicious Attackers
 
-[Image Coming Soon!]
+![alt text](https://github.com/bajumar/Azure-Monitor-Logs/blob/master/Visualization%20using%20PowerBI%20Desktop/images/Geographic%20Map%20of%20Computers%20Correlated%20with%20Known%20Malicious%20Attackers.PNG "Computers & Attackers")
 
 1. Run the following query in Azure Monitor Logs:
 
