@@ -54,7 +54,7 @@
       | Field | Map Data Point | Note |
       | --- | --- | --- |
       | Computer | Legend | |
-      | Computer | Size | Choose *"Count (Distinct)"* for the aggregation. |
+      | RemoteIP | Size | Choose *"Count (Distinct)"* for the aggregation. |
       | ComputerLatitude | Latitude | Choose *"Don't summarize"* for the aggregation. |
       | ComputerLongitude | Longitude | Choose *"Don't summarize"* for the aggregation. |
       
@@ -63,13 +63,13 @@
        | Field | Map Data Point | Note |
        | --- | --- | --- |
        | RemoteIP | Legend | |
-       | RemoteIP | Size | Choose *"Count (Distinct)"* for the aggregation. |
+       | Computer | Size | Choose *"Count (Distinct)"* for the aggregation. |
        | RemoteIPLatitude | Latitude | Choose *"Don't summarize"* for the aggregation. |
        | RemoteIPLongitude | Longitude | Choose *"Don't summarize"* for the aggregation. |
       
      Now you can click on any data point on either map, or in the Legend area of either map, and see the corresponding data points on the other map light up!
      
-     ***Variation 1:*** Swap the fields in the Size data points - put the *RemoteIP* field in the first map's *Size* data point, and put the *Computer* field in the second (Attacker) map's *Size* data point. Then you will see how many Attackers a Computer has, and how many Computers an Attacker is attempting to access.
+     ***Variation 1:*** Change the Size aggregations to *"Count"* if you want to see the total volume of attack attempts instead of unique computer and attacker correlations.
      
      ***Variation 2:*** Add Slicer and Table controls to make it easier to navigate, and to show more relevant information.
    
