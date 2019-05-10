@@ -1,6 +1,6 @@
 # Geographic Map of Asset Inventory
 
-![alt text](https://github.com/bajumar/Azure-Monitor-Logs/blob/master/Visualization%20using%20PowerBI%20Desktop/images/Geographic%20Map%20of%20Asset%20Inventory.PNG "Screen Capture")
+![alt text](https://github.com/bajumar/Azure-Monitor-Logs/blob/master/Visualization%20using%20PowerBI%20Desktop/images/Geographic%20Map%20of%20Asset%20Inventory.PNG "Computer Geo-Locations")
 
 1. Run the following query in Azure Monitor Logs:
 
