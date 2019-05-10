@@ -1,20 +1,20 @@
 // ALL Azure Update Management QUERIES
 
-// Table of Needed Updates for Windows Computers as of the last scan, by Computer
+// Table: Needed Updates for Windows Computers
 Update
 | where OSType != "Linux" and UpdateState == "Needed"
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
 | project Computer, Product, Classification, MSRCSeverity, KBID, Title, RebootBehavior
 | sort by Computer asc
 
-// Table of Needed Updates for Linux Computers as of the last scan, by Computer
+// Table: Needed Updates for Linux Computers
 Update
 | where OSType == "Linux" and UpdateState == "Needed"
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
 | project Computer, OSName, Classification, PackageSeverity, BulletinID, CVENumbers
 | sort by Computer asc
 
-// Table of Needed Updates for All (Windows and Linux) Computers as of the last scan, by Computer
+// Table: Needed Updates for All Computers (Cross-Platform)
 Update
 | where UpdateState == "Needed"
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
@@ -26,7 +26,7 @@ Update
 | project Computer, OSType, UpdateFor , Classification, Severity, ID, Description, RebootBehavior
 | sort by Computer asc
 
-// Table of Needed Operating System Updates for All (Windows and Linux) Computers as of the last scan, by Computer
+// Table: Needed OS Updates for All Computers (Cross-Platform)
 Update
 | where UpdateState == "Needed"
 | where Product startswith "Windows Server" or OSName != ""
@@ -39,8 +39,7 @@ Update
 | project Computer, OSType, UpdateFor , Classification, Severity, ID, Description, RebootBehavior
 | sort by Computer asc
 
-// Pie Chart of Needed Operating System Updates for All (Windows and Linux) Computers as of the last scan
-// Before saving or pinning, enable the "Split By" values of your preference to make the visulaization more impactful
+// PieChart: Needed OS Updates for All Computers (Cross-Platform)
 Update
 | where UpdateState == "Needed"
 | where Product startswith "Windows Server" or OSName != ""
