@@ -94,7 +94,7 @@ AzureDiagnostics
 | summarize sum(CloudStorageInGB) by bin(TimeGenerated, 1d), SourceName
 | render timechart
 
-// Line Chart Trend of Storage Consumption, by Recovery Vault
+// LineChart: Trend of Recovery Vault Storage Consumption
 AzureDiagnostics
 | where Category == "AzureBackupReport"
 | where StorageConsumedInMBs_s != ""
