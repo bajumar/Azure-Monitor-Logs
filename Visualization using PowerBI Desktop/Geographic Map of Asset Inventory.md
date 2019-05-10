@@ -1,4 +1,3 @@
-
 # Geographic Map of Asset Inventory
 
 ![alt text](https://github.com/bajumar/Azure-Monitor-Logs/blob/master/Visualization%20using%20PowerBI%20Desktop/images/Geographic%20Map%20of%20Asset%20Inventory.PNG "Screen Capture")
@@ -39,7 +38,7 @@
 3. In *PowerBI Desktop*, select the **Map** visualization and drag the following **Fields** to their matching data points:
 
    | Field | Map Data Point | Note |
-   | ---- | --- | --- |
+   | --- | --- | --- |
    | Computer | Size | |
    | ComputerEnvironment | Legend | |
    | RemoteIPLatitude | Latitude | Choose *"Don't summarize"* for the aggregation. |
