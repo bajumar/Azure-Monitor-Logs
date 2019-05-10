@@ -43,5 +43,9 @@
    | ComputerEnvironment | Legend | |
    | RemoteIPLatitude | Latitude | Choose *"Don't summarize"* for the aggregation. |
    | RemoteIPLongitude | Longitude | Choose *"Don't summarize"* for the aggregation. |
+   
+   ***Variation 1:*** If you would like to see the Computer Names in each location, instead of the Environment Name, drag the *Computer* field to the *Legend* data point.
+   
+   ***Variation 2:*** If you prefer a simplified Country-level view you can drag the *RemoteIPCountry* field to the *Location* data point, however you cannot have both the *Location* and the combination of *Lat/Long* data points populated simultaneously.
+   
 
-   ***Note:*** If you prefer a simplified Country-level view you can drag the *RemoteIPCountry* field to the *Location* data point, however you cannot have both the *Location* and the combination of *Lat/Long* data points populated simultaneously.
