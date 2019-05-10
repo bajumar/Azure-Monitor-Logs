@@ -69,6 +69,7 @@
       
      Now you can click on any data point on either map, or in the Legend area of either map, and see the corresponding data points on the other map light up!
      
-     ***Optional:*** Try adding Slicer and Table controls to make it easier to navigate and show more information. 
-
+     ***Variation 1:*** Swap the fields in the Size data points - put the *RemoteIP* field in the first map's *Size* data point, and put the *Computer* field in the second (Attacker) map's *Size* data point. Then you will see how many Attackers a Computer has, and how many Computers an Attacker is attempting to access.
+     
+     ***Variation 2:*** Add Slicer and Table controls to make it easier to navigate, and to show more relevant information.
    
