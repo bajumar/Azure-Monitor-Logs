@@ -31,7 +31,7 @@ AzureDiagnostics
 | project SourceName, JobStatus_s, JobFailureCode_s, JobStartDateTime_s, JobMinutes, Vault = Resource
 | sort by SourceName asc
 
-// Table: Backup Alerts
+// Table: All Backup Alerts
 AzureDiagnostics
 | where Category == "AzureBackupReport"
 | where AlertCode_s != ""
