@@ -54,7 +54,7 @@
       | Field | Map Data Point | Note |
       | --- | --- | --- |
       | Computer | Legend | |
-      | Computer | Size | Choose *"Count (Distinct)* for the aggregation. |
+      | Computer | Size | Choose *"Count (Distinct)"* for the aggregation. |
       | ComputerLatitude | Latitude | Choose *"Don't summarize"* for the aggregation. |
       | ComputerLongitude | Longitude | Choose *"Don't summarize"* for the aggregation. |
       
@@ -63,7 +63,7 @@
        | Field | Map Data Point | Note |
        | --- | --- | --- |
        | RemoteIP | Legend | |
-       | RemoteIP | Size | Choose *"Count (Distinct)* for the aggregation. |
+       | RemoteIP | Size | Choose *"Count (Distinct)"* for the aggregation. |
        | RemoteIPLatitude | Latitude | Choose *"Don't summarize"* for the aggregation. |
        | RemoteIPLongitude | Longitude | Choose *"Don't summarize"* for the aggregation. |
       
