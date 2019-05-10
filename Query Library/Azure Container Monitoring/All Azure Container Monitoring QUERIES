@@ -1,5 +1,6 @@
+// ALL Azure Container Monitoring QUERIES
 
-// Table of Container Failures with Exit Code, by Failures (Count)
+// Table: Container Failures & Exit Code
 ContainerInventory
 | where ContainerState == "Failed"
 | summarize Failures = dcount(ContainerID) by Computer, Image, ExitCode
