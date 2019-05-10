@@ -1,10 +1,11 @@
+// ALL Windows EventLog QUERIES
 
-// Table of Event Log Sources and volume ingested, by Event Log and Source
+// Table: Number of Event Log Events Ingested
 Event
 | summarize Events = count() by EventLog, Source
 | sort by EventLog asc, Source asc, Events
 
-// Table of Failed Update Attempts, by Computer and Description
+// Table: Failed Windows Update Attempts
 Event
 | where EventLog == "System" and Source == "Microsoft-Windows-WindowsUpdateClient" and EventLevelName == "Error"
 | extend Description = extract("(<Param>(.*?)</Param>){2}",2,ParameterXml)
@@ -13,7 +14,7 @@ Event
 | project Computer, Description, TimeGenerated, KBID, UpdateGUID
 | sort by Computer asc, Description asc
 
-// Bar Chart of Failed Update Attempts, by Computer and KBID
+// BarChart: Failed Windows Update Attempts
 Event
 | where EventLog == "System" and Source == "Microsoft-Windows-WindowsUpdateClient" and EventLevelName == "Error"
 | extend Description = extract("(<Param>(.*?)</Param>){2}",2,ParameterXml)
