@@ -1,6 +1,6 @@
 // ALL Azure Backup QUERIES
 
-// Table: Backup Report Logs with All Details
+// Table: All Backup Report Logs with All Details
 AzureDiagnostics
 | where Category == "AzureBackupReport"
 
