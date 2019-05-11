@@ -1,4 +1,4 @@
-// ALL Azure Container Monitoring QUERIES
+// ALL Azure Containers QUERIES
 
 // Table: Container Failures with Exit Codes
 ContainerInventory
