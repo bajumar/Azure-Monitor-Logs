@@ -1,6 +1,6 @@
 # Azure Agent (Heartbeat) Queries
 
-These queries are based on the data retrieved with the Agent Heartbeat.
+These queries are based on the data collected with the Agent Heartbeat.
 
 ## Prerequisites
 
@@ -15,6 +15,10 @@ The Heartbeat logs for Windows Servers do not log the Operating System release n
 These queries assume that the logged version numbers are for Windows Server, and use the "datatable" operator to construct the lookup table for mapping the version numbers to the equivalent full release names.
 
 *Language Reference "datatable": <https://docs.microsoft.com/azure/kusto/query/datatableoperator>*
+
+A more accurate way to retrieve the Windows Server release names is to use the Service Map solution, which also captures additional computer inventory information such as the Azure VM Size, number of processors, etc.
+
+*Using Service Map: <https://docs.microsoft.com/azure/azure-monitor/insights/service-map>*
 
 ## About Piecharts...
 
