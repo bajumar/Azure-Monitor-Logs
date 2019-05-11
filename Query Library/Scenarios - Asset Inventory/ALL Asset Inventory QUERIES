@@ -3,7 +3,7 @@ Heartbeat
 | distinct Computer, ComputerEnvironment, RemoteIPCountry, RemoteIPLatitude, RemoteIPLongitude
 | sort by Computer asc
 
-// Heartbeat-Table: Linux Versions
+// Heartbeat-Table: Inventory of Linux Versions
 Heartbeat
 | where OSType == "Linux"
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer
@@ -11,7 +11,7 @@ Heartbeat
 | project Computer, OSType, OSName, Version, ComputerIP, ComputerEnvironment
 | sort by Computer asc
 
-// Heartbeat-Table: Windows Versions
+// Heartbeat-Table: Inventory of Windows Versions
 // Reference: https://docs.microsoft.com/en-us/windows/desktop/SysInfo/operating-system-version
 let VersionMap = datatable (Version: string, ReleaseName:string)
 [
@@ -32,7 +32,7 @@ Heartbeat
 | project Computer, OSType, OSName, Version, ComputerIP, ComputerEnvironment
 | sort by Computer asc
 
-// Heartbeat-Table: Operating System Versions (Cross-Platform)
+// Heartbeat-Table: Inventory of All OS Versions (Cross-Platform)
 // Reference: https://docs.microsoft.com/en-us/windows/desktop/SysInfo/operating-system-version
 let VersionMap = datatable (Version: string, ReleaseName:string)
 [
@@ -52,7 +52,7 @@ Heartbeat
 | project Computer, OSType, OSName, Version, ComputerIP, ComputerEnvironment
 | sort by Computer asc
 
-// Heartbeat-PieChart: All Operating System Versions (Cross-Platform)
+// Heartbeat-PieChart: Inventory of All Operating System Versions (Cross-Platform)
 // Reference: https://docs.microsoft.com/en-us/windows/desktop/SysInfo/operating-system-version
 let VersionMap = datatable (Version: string, ReleaseName:string)
 [
