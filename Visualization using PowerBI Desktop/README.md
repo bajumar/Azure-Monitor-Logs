@@ -1,26 +1,43 @@
 # Visualization using PowerBI Desktop
 
-You can export a query to create PowerBI reports with more advanced visualizations - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/powerbi>
+In this section you will find examples of relatively simple queries which can be used to create useful interactive reports with dynamic visualizations in PowerBI Desktop.
 
-<details><summary>Click here for a summary of the instructions...</summary>
-<p>
+First, get Power BI Desktop for free - <https://powerbi.microsoft.com/desktop>
 
-In *Azure Monitor Logs*:
+The specific queries and report creation instructions are provided in each report example, but they all follow the same basic process...
 
-1. After running a query, in the menu bar select **Export > Power BI Query (M)** to generate a "PowerBIQuery.txt" file.
+1. In *Azure Monitor Logs*, run your query using any time interval you wish.
 
-2. Open the "PowerBIQuery.txt" text file and copy its contents.
+2. Export the query, then copy and paste the exported file contents into *PowerBI Desktop*:
 
-In *PowerBI Desktop*:
+   <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/powerbi>
 
-1. In the top menu bar click on the **Get Data** button and choose **Blank Query** to open the *Query Editor* window.
+   <details>
 
-2. In the *Query Editor* window, from the top menu bar select **Advanced Editor**.
+   <summary>Click here for a summary of the instructions...</summary>
 
-3. In the *Advanced Editor* window paste the contents of the exported file into the query and click **Done**. You may be prompted for credentials to connect to Azure.
+   <p>
 
-4. Type in a descriptive name for the query if you wish, then click **Close and Apply** to add the dataset to the report.
+   In *Azure Monitor Logs*:
 
-5. Create your report. If you wish to publish the report to PowerBI, in the top menu bar click on the **Publish** button.
+   1. After running a query, in the menu bar select **Export > Power BI Query (M)** to generate a "PowerBIQuery.txt" file.
 
-</p>
+   2. Open the "PowerBIQuery.txt" text file and copy its contents.
+
+   In *PowerBI Desktop*:
+
+   1. In the top menu bar click on the **Get Data** button and choose **Blank Query** to open the *Query Editor* window.
+
+   2. In the *Query Editor* window, from the top menu bar select **Advanced Editor**.
+
+   3. In the *Advanced Editor* window paste the contents of the exported file into the query and click **Done**. You may be prompted for credentials to connect to Azure.
+
+   4. Type in a descriptive name for the query if you wish, then click **Close and Apply** to add the dataset to the report.
+
+   </p>
+
+   </details>
+
+3. In *PowerBI Desktop*, create your report and save it. You can also publish your report to PowerBI Server or to the PowerBI service if you wish to share it with others in your organization, by clicking on the **Publish** button in the top menu bar.
+
+You can learn more about using PowerBI here - <https://docs.microsoft.com/power-bi>

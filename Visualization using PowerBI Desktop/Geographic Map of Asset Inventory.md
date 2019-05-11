@@ -2,7 +2,7 @@
 
 ![alt text](images/Geographic%20Map%20of%20Asset%20Inventory.PNG "Computer Geo-Locations")
 
-1. Run the following query in Azure Monitor Logs:
+1. In *Azure Monitor Logs*, run the following query using any time interval you wish:
 
    ```
    // Table of Computer Geo-Locations
@@ -10,7 +10,7 @@
    | distinct Computer, ComputerEnvironment, RemoteIPCountry, RemoteIPLatitude, RemoteIPLongitude
    ```
 
-2. Export the query, then copy and paste the exported file contents into PowerBI Desktop:
+2. Export the query, then copy and paste the exported file contents into *PowerBI Desktop*:
 
    <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/powerbi>
 
@@ -35,8 +35,6 @@
    3. In the *Advanced Editor* window paste the contents of the exported file into the query and click **Done**. You may be prompted for credentials to connect to Azure.
 
    4. Type in a descriptive name for the query if you wish, then click **Close and Apply** to add the dataset to the report.
-
-   5. Create your report. If you wish to publish the report to PowerBI, in the top menu bar click on the **Publish** button.
 
    </p>
 
