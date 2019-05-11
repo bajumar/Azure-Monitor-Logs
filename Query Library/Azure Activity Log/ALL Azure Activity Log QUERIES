@@ -1,6 +1,6 @@
 // ALL Azure Activity Log QUERIES
 
-// Table: Most Active Users & Their Operations
+// Table: Most Active Users & Their Activities
 AzureActivity
 | where Caller has "@"
 | summarize Activities = count() by Caller, OperationName
