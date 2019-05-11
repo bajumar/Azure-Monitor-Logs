@@ -1,6 +1,6 @@
 # GeoMap: Computer Geo-Locations
 
-![alt text](images/GeoMap%20-%20Computer%20Geo-Locations%20.PNG "Computer Geo-Locations")
+![alt text](images/GeoMap%20-%20Computer%20Geo-Locations.PNG "Computer Geo-Locations")
 
 1. In *Azure Monitor Logs*, run the following query using any time interval you wish:
 
