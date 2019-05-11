@@ -1,6 +1,6 @@
 # Geographic Map of Asset Inventory
 
-![alt text](https://github.com/bajumar/Azure-Monitor-Logs/blob/master/Visualization%20using%20PowerBI%20Desktop/images/Geographic%20Map%20of%20Asset%20Inventory.PNG "Computer Geo-Locations")
+![alt text](images/Geographic%20Map%20of%20Asset%20Inventory.PNG "Computer Geo-Locations")
 
 1. Run the following query in Azure Monitor Logs:
 
@@ -12,8 +12,10 @@
 
 2. Follow the instructions to export the query and import it into PowerBI Desktop - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/powerbi>
 
-   <details><summary>Click here for a summary of the instructions...</summary>
-   <p>
+    <details>
+
+    <summary>Click here for a summary of the instructions...</summary>
+   
 
    In *Azure Monitor Logs*:
 
@@ -33,7 +35,7 @@
 
    5. Create your report. If you wish to publish the report to PowerBI, in the top menu bar click on the **Publish** button.
 
-   </p>
+   </details>
 
 3. In *PowerBI Desktop*, select the **Map** visualization and drag the following **Fields** to their matching data points:
 
@@ -48,4 +50,3 @@
    
    ***Variation 2:*** If you prefer a simplified Country-level view you can drag the *RemoteIPCountry* field to the *Location* data point, however you cannot have both the *Location* and the combination of *Lat/Long* data points populated simultaneously.
    
-
