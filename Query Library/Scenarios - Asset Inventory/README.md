@@ -1,6 +1,6 @@
 # Asset Inventory Queries Prerequisites & Comments
 
-The queries in this category are focused on basic Asset Inventory, retrieving data such as Operating System versions, Proccessor counts, Memory and Disk allocation, etc. The quality of the results from these queries depend on the solutions that are enabled, so I will be including several examples based on various solutions and solution combinations. In particular, the Service Map solution will collect the most relevant data for creating effective queries in this category.
+The queries in this category are focused on basic Asset Inventory, retrieving data such as Operating System versions, Processor counts, Memory and Disk allocation, etc. The quality of the results from these queries depend on the solutions that are enabled, so I will be including several examples based on various solutions and solution combinations. In particular, the Service Map solution will collect the most relevant data for creating effective queries in this category.
 
 ### About Piecharts...
 
@@ -16,7 +16,7 @@ The relevant queries in this repo assume that the logged version numbers are for
 
 ## ServiceMap-based Query Examples
 
-Servce Map collects a richer dataset, including Azure-specific configuration information such as VM Size and Region, so the construction of relevant queries is much simpler. The queries in this section also feature "pretty" column names, which support the use of spaces and special characters.
+Service Map collects a richer dataset, including Azure-specific configuration information such as VM Size and Region, so the construction of relevant queries is much simpler. The queries in this section also feature "pretty" column names, which support the use of spaces and special characters.
 
 Enable Service Map - <https://docs.microsoft.com/en-us/azure/azure-monitor/insights/service-map-configure>
 
