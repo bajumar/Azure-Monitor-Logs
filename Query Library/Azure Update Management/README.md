@@ -1,8 +1,10 @@
-# Azure Update Management Queries Prerequisites
+# Azure Update Management Queries
 
-Enable Azure Update Management - <https://docs.microsoft.com/en-us/azure/automation/automation-update-management#onboard>
+These queries are based on the data collected from the Update Management solution.
 
-*Be patient as initial schema preparation and data ingestion will take time.*
+## Prerequisites
+
+Enable Azure Update Management: <https://docs.microsoft.com/azure/automation/automation-update-management>
 
 ## About Piecharts...
 

@@ -1,6 +1,6 @@
 # All OS Performance (Cross-Platform) Queries
 
-These queries are based on the data collected by enabling Operating System performance data collection.
+These queries are based on the data collected from Operating System performance counters.
 
 ## Prerequisites
 

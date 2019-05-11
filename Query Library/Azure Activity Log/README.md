@@ -1,5 +1,7 @@
-# Azure Activity Log Queries Prerequisites
+# Azure Activity Log Queries
 
-Enable Azure Activity Log Collection - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/collect-activity-logs>
+These queries are based on the data collected from Azure Activity Logs.
 
-*Be patient as initial schema preparation and data ingestion will take time.*
+## Prerequisites
+
+Enable Activity Log Collection - <https://docs.microsoft.com/azure/azure-monitor/platform/collect-activity-logs>

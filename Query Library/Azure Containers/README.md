@@ -1,5 +1,7 @@
-# Azure Containers Queries Prerequisites
+# Azure Containers Queries
 
-Enable Azure Container Monitoring Solution - <https://docs.microsoft.com/en-us/azure/azure-monitor/insights/containers>
+These queries are based on the data collected by the Container Monitoring solution.
 
-*Be patient as initial schema preparation and data ingestion will take time.*
+## Prerequisites
+
+Enable Azure Container Monitoring: <https://docs.microsoft.com/azure/azure-monitor/insights/containers>
