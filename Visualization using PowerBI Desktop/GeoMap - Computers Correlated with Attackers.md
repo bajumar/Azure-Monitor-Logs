@@ -1,6 +1,6 @@
 # GeoMap: Computers Correlated with Attackers
 
-![alt text](images/Geographic%20Map%20of%20Computers%20Correlated%20with%20Known%20Malicious%20Attackers.PNG "Computers & Attackers")
+![alt text](images/GeoMap%20-%20Computers%20Correlated%20with%20Attackers.PNG "Computers & Attackers")
 
 1. In *Azure Monitor Logs*, run the following query using any time interval you wish:
 
