@@ -2,6 +2,12 @@
 
 ![alt text](images/GeoMap%20-%20Computer%20Geo-Locations.PNG "Computer Geo-Locations")
 
+## Prerequisites
+
+None.
+
+## Building the Report
+
 1. In *Azure Monitor Logs*, run the following query using any time interval you wish:
 
    ```
@@ -52,3 +58,48 @@
    ***Variation 1:*** If you would like to see the Computer Names in each location, instead of the Environment Name, drag the *Computer* field to the *Legend* data point.
 
    ***Variation 2:*** If you prefer a simplified Country-level view you can drag the *RemoteIPCountry* field to the *Location* data point, however you cannot have both the *Location* and the combination of *Lat/Long* data points populated simultaneously.
+
+## Closing Remarks
+
+<details>
+
+<summary>Click here to see your reward for diligently reading this document...</summary>
+
+<p>
+
+Here is a shortcut for you!
+
+The PowerBI code below is an export of the query example run using a 24-hour time interval. Simply copy and paste the code into PowerBI desktop, then replace the <WorkspaceID> placeholder in the API URL with a valid Workspace ID to which you have access and you can start creating your report.
+
+```
+let AnalyticsQuery =
+let Source = Json.Document(Web.Contents("https://api.loganalytics.io/v1/workspaces/<WorkspaceID>/query", 
+[Query=[#"query"=" 
+   Heartbeat
+   | distinct Computer, ComputerEnvironment, RemoteIPCountry, RemoteIPLatitude, RemoteIPLongitude",#"x-ms-app"="OmsAnalyticsPBI",#"timespan"="P1D",#"prefer"="ai.response-thinning=true"],Timeout=#duration(0,0,4,0)])),
+TypeMap = #table(
+{ "AnalyticsTypes", "Type" }, 
+{ 
+{ "string",   Text.Type },
+{ "int",      Int32.Type },
+{ "long",     Int64.Type },
+{ "real",     Double.Type },
+{ "timespan", Duration.Type },
+{ "datetime", DateTimeZone.Type },
+{ "bool",     Logical.Type },
+{ "guid",     Text.Type },
+{ "dynamic",  Text.Type }
+}),
+DataTable = Source[tables]{0},
+Columns = Table.FromRecords(DataTable[columns]),
+ColumnsWithType = Table.Join(Columns, {"type"}, TypeMap , {"AnalyticsTypes"}),
+Rows = Table.FromRows(DataTable[rows], Columns[name]), 
+Table = Table.TransformColumnTypes(Rows, Table.ToList(ColumnsWithType, (c) => { c{0}, c{3}}))
+in
+Table
+in AnalyticsQuery
+```
+
+</p>
+
+</details>

@@ -2,6 +2,12 @@
 
 ![alt text](images/GeoMap%20-%20Computers%20Correlated%20with%20Attackers.PNG "Computers & Attackers")
 
+## Prerequisites
+
+Enable the Azure Wire Data solution: <https://docs.microsoft.com/azure/azure-monitor/insights/wire-data>
+
+## Creating the Report
+
 1. In *Azure Monitor Logs*, run the following query using any time interval you wish:
 
    ```
@@ -24,7 +30,7 @@
 
 2. Export the query, then copy and paste the exported file contents into *PowerBI Desktop*:
 
-   <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/powerbi>
+   <https://docs.microsoft.com/azure/azure-monitor/platform/powerbi>
 
    <details>
 
@@ -77,3 +83,60 @@
      ***Variation 1:*** Change the Size aggregations to *"Count"* if you want to see the total volume of attack attempts instead of unique computer and attacker correlations.
 
      ***Variation 2:*** Add Slicer and Table controls to make it easier to navigate, and to show more relevant information.
+
+## Closing Remarks
+
+<details>
+
+<summary>Click here to see your reward for diligently reading this document...</summary>
+
+<p>
+
+Here is a shortcut for you!
+
+The PowerBI code below is an export of the query example run using a 24-hour time interval. Simply copy and paste the code into PowerBI desktop, then replace the <WorkspaceID> placeholder in the API URL with a valid Workspace ID to which you have access and you can start creating your report.
+
+```
+let AnalyticsQuery =
+let Source = Json.Document(Web.Contents("https://api.loganalytics.io/v1/workspaces/<WorkspaceID>/query", 
+[Query=[#"query"="WireData
+| where MaliciousIP != """" and Direction == ""Inbound""
+| extend ComputerIP = LocalIP
+| extend ComputerPort = LocalPortNumber
+| extend ComputerSubnet = LocalSubnet
+| project ApplicationProtocol, Computer, ComputerIP, ComputerPort, ComputerSubnet, Confidence, IndicatorThreatType, RemoteIP , RemoteIPCountry, RemoteIPLatitude, RemoteIPLongitude, Severity
+| join kind = leftouter (
+Heartbeat
+| extend ComputerCountry = RemoteIPCountry 
+| extend ComputerLatitude = RemoteIPLatitude 
+| extend ComputerLongitude = RemoteIPLongitude 
+| distinct Computer, ComputerCountry, ComputerEnvironment, ComputerLatitude, ComputerLongitude
+) on Computer
+| project-away Computer1
+",#"x-ms-app"="OmsAnalyticsPBI",#"timespan"="P1D",#"prefer"="ai.response-thinning=true"],Timeout=#duration(0,0,4,0)])),
+TypeMap = #table(
+{ "AnalyticsTypes", "Type" }, 
+{ 
+{ "string",   Text.Type },
+{ "int",      Int32.Type },
+{ "long",     Int64.Type },
+{ "real",     Double.Type },
+{ "timespan", Duration.Type },
+{ "datetime", DateTimeZone.Type },
+{ "bool",     Logical.Type },
+{ "guid",     Text.Type },
+{ "dynamic",  Text.Type }
+}),
+DataTable = Source[tables]{0},
+Columns = Table.FromRecords(DataTable[columns]),
+ColumnsWithType = Table.Join(Columns, {"type"}, TypeMap , {"AnalyticsTypes"}),
+Rows = Table.FromRows(DataTable[rows], Columns[name]), 
+Table = Table.TransformColumnTypes(Rows, Table.ToList(ColumnsWithType, (c) => { c{0}, c{3}}))
+in
+Table
+in AnalyticsQuery
+```
+
+</p>
+
+</details>
