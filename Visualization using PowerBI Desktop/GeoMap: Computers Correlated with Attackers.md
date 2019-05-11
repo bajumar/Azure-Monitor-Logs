@@ -1,11 +1,11 @@
-# Geographic Map of Computers Correlated with Known Malicious Attackers
+# GeoMap: Computers Correlated with Attackers
 
 ![alt text](images/Geographic%20Map%20of%20Computers%20Correlated%20with%20Known%20Malicious%20Attackers.PNG "Computers & Attackers")
 
 1. In *Azure Monitor Logs*, run the following query using any time interval you wish:
 
    ```
-   // Table of Computers Correlated with Known Malicious Attackers
+   // Table: Computers Correlated with Attackers
    WireData
    | where MaliciousIP != "" and Direction == "Inbound"
    | extend ComputerIP = LocalIP
