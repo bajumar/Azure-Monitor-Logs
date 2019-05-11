@@ -1,6 +1,6 @@
-# Visualization using PowerBI Desktop
+# Visualization using Power BI Desktop
 
-In this section you will find examples of relatively simple queries which can be used to create useful interactive reports with dynamic visualizations in PowerBI Desktop.
+In this section you will find examples of relatively simple queries which can be used to create useful interactive reports with dynamic visualizations in Power BI Desktop.
 
 First, get Power BI Desktop for free - <https://powerbi.microsoft.com/desktop>
 
@@ -8,7 +8,7 @@ The specific queries and report creation instructions are provided in each repor
 
 1. In *Azure Monitor Logs*, run your query using any time interval you wish.
 
-2. Export the query, then copy and paste the exported file contents into *PowerBI Desktop*:
+2. Export the query, then copy and paste the exported file contents into *Power BI Desktop*:
 
    <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/powerbi>
 
@@ -24,7 +24,7 @@ The specific queries and report creation instructions are provided in each repor
 
    2. Open the "PowerBIQuery.txt" text file and copy its contents.
 
-   In *PowerBI Desktop*:
+   In *Power BI Desktop*:
 
    1. In the top menu bar click on the **Get Data** button and choose **Blank Query** to open the *Query Editor* window.
 
@@ -38,6 +38,6 @@ The specific queries and report creation instructions are provided in each repor
 
    </details>
 
-3. In *PowerBI Desktop*, create your report and save it. You can also publish your report to PowerBI Server or to the PowerBI service if you wish to share it with others in your organization, by clicking on the **Publish** button in the top menu bar.
+3. In *Power BI Desktop*, create your report and save it. You can also publish your report to Power BI Server or to Power BI Online if you wish to share it with others in your organization, by clicking on the **Publish** button in the top menu bar.
 
-You can learn more about using PowerBI here - <https://docs.microsoft.com/power-bi>
+You can learn more about using Power BI here - <https://docs.microsoft.com/power-bi>

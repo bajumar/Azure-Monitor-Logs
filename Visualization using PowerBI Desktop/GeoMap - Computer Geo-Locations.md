@@ -16,7 +16,7 @@ None.
    | distinct Computer, ComputerEnvironment, RemoteIPCountry, RemoteIPLatitude, RemoteIPLongitude
    ```
 
-2. Export the query, then copy and paste the exported file contents into *PowerBI Desktop*:
+2. Export the query, then copy and paste the exported file contents into *Power BI Desktop*:
 
    <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/powerbi>
 
@@ -32,7 +32,7 @@ None.
 
    2. Open the "PowerBIQuery.txt" text file and copy its contents.
 
-   In *PowerBI Desktop*:
+   In *Power BI Desktop*:
 
    1. In the top menu bar click on the **Get Data** button and choose **Blank Query** to open the *Query Editor* window.
 
@@ -46,7 +46,7 @@ None.
 
    </details>
 
-3. In *PowerBI Desktop*, select the **Map** visualization and drag the following **Fields** to their matching data points:
+3. In *Power BI Desktop*, select the **Map** visualization and drag the following **Fields** to their matching data points:
 
    | Field | Map Data Point | Note |
    | --- | --- | --- |
@@ -69,7 +69,7 @@ None.
 
 Here is a shortcut for you!
 
-The PowerBI code below is an export of the query example run using a 24-hour time interval. Simply copy and paste the code into PowerBI desktop, then replace the <WorkspaceID> placeholder in the API URL with a valid Workspace ID to which you have access and you can start creating your report.
+The Power BI code below is an export of the query example run using a 24-hour time interval. Simply copy and paste the code into Power BI Desktop, then replace the "<WorkspaceID>" placeholder in the API URL with a valid Workspace ID to which you have access and you can start creating your report.
 
 ```
 let AnalyticsQuery =
