@@ -6,7 +6,7 @@
 
 Enable the Azure Wire Data solution: <https://docs.microsoft.com/azure/azure-monitor/insights/wire-data>
 
-## Creating the Report
+## Building the Report
 
 1. In *Azure Monitor Logs*, run the following query using any time interval you wish:
 
