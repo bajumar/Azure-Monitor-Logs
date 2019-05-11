@@ -10,7 +10,9 @@
    | distinct Computer, ComputerEnvironment, RemoteIPCountry, RemoteIPLatitude, RemoteIPLongitude
    ```
 
-2. Follow the instructions to export the query and import it into PowerBI Desktop - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/powerbi>
+2. Export the query, then copy and paste the exported file contents into PowerBI Desktop:
+
+   <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/powerbi>
 
    <details>
 
