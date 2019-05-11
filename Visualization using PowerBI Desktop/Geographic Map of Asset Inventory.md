@@ -12,10 +12,9 @@
 
 2. Follow the instructions to export the query and import it into PowerBI Desktop - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/powerbi>
 
-    <details>
+   <details>
 
-    <summary>Click here for a summary of the instructions...</summary>
-   
+   <summary>Click here for a summary of the instructions...</summary>
 
    In *Azure Monitor Logs*:
 
