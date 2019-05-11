@@ -1,11 +1,11 @@
-# Geographic Map of Asset Inventory
+# GeoMap: Computer Geo-Locations
 
 ![alt text](images/Geographic%20Map%20of%20Asset%20Inventory.PNG "Computer Geo-Locations")
 
 1. In *Azure Monitor Logs*, run the following query using any time interval you wish:
 
    ```
-   // Table of Computer Geo-Locations
+   // Table: Computer Geo-Locations
    Heartbeat
    | distinct Computer, ComputerEnvironment, RemoteIPCountry, RemoteIPLatitude, RemoteIPLongitude
    ```
