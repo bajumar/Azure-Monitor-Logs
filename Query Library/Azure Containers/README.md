@@ -1,4 +1,4 @@
-# Azure Container Monitoring Queries Prerequisites
+# Azure Containers Queries Prerequisites
 
 Enable Azure Container Monitoring Solution - <https://docs.microsoft.com/en-us/azure/azure-monitor/insights/containers>
 
