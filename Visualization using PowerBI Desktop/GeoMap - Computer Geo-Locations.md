@@ -69,11 +69,11 @@ None.
 
 Here is a shortcut for you!
 
-The Power BI code below is an export of the query example run using a 24-hour time interval. Simply copy and paste the code into Power BI Desktop, then replace the "<WorkspaceID>" placeholder in the API URL with a valid Workspace ID to which you have access and you can start creating your report.
+The Power BI code below is an export of the query example run using a 24-hour time interval. Simply copy and paste the code into Power BI Desktop, then replace the 'WorkspaceID' placeholder in the API URL with a valid Workspace ID to which you have access and you can start creating your report.
 
 ```
 let AnalyticsQuery =
-let Source = Json.Document(Web.Contents("https://api.loganalytics.io/v1/workspaces/<WorkspaceID>/query", 
+let Source = Json.Document(Web.Contents("https://api.loganalytics.io/v1/workspaces/'WorkspaceID'/query", 
 [Query=[#"query"=" 
    Heartbeat
    | distinct Computer, ComputerEnvironment, RemoteIPCountry, RemoteIPLatitude, RemoteIPLongitude",#"x-ms-app"="OmsAnalyticsPBI",#"timespan"="P1D",#"prefer"="ai.response-thinning=true"],Timeout=#duration(0,0,4,0)])),
