@@ -4,7 +4,7 @@ These queries are based on the data collected with the Agent Heartbeat.
 
 ## Prerequisites
 
-None.
+Install the Agent: <https://docs.microsoft.com/azure/azure-monitor/platform/log-analytics-agent>
 
 ## Using Heartbeat Data to Inventory Windows Server Versions
 
