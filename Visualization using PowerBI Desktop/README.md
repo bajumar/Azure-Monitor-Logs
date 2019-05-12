@@ -40,4 +40,4 @@ The specific queries and report creation instructions are provided in each repor
 
 3. In *Power BI Desktop*, create your report and save it. You can also publish your report to Power BI Server or to Power BI Online if you wish to share it with others in your organization, by clicking on the **Publish** button in the top menu bar.
 
-You can learn more about using Power BI here - <https://docs.microsoft.com/power-bi>
+Learn more about Power BI here - <https://docs.microsoft.com/power-bi>
