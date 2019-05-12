@@ -1,6 +1,6 @@
 # Welcome to My Query Library!
 
-The library is organized by folder, where the folder name indicates the service or solution that the contained queries target.
+The library is organized by folder, where the folder name indicates the service or solution which the contained queries target.
 
 ## Query Documents
 
