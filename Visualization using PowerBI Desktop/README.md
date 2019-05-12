@@ -4,7 +4,7 @@ In this section you will find examples of relatively simple queries which can be
 
 First, get Power BI Desktop for free - <https://powerbi.microsoft.com/desktop>
 
-The specific queries and report creation instructions are provided in each example. The following basic process is used to export the query from Azure Monitor Logs and import it into Power BI...
+The specific queries and report creation instructions are provided in each example. The following basic process is used to export the query from Azure Monitor Logs and import it into Power BI Desktop...
 
 1. In *Azure Monitor Logs*, run your query using any time interval you wish.
 
