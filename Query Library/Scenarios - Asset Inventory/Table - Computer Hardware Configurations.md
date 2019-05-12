@@ -1,0 +1,19 @@
+```
+// Table: Computer Hardware Configurations
+// Requires one Linux "Physical Disk(*)\..." and one Windows "LogicalDisk(*)\..."
+ServiceMapComputer_CL
+| summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer
+| extend ["Operating System"]= extract("([^,]+$)", 1, OperatingSystemFullName_s)
+| extend ["Ephemeral Disk"] = iff(isempty(HostingProvider_s), "N/A - not an Azure VM", iff(OperatingSystemFullName_s startswith "L", "Disk 'sdb' is ephemeral.", "Disk 'D' is ephemeral."))
+| project Computer, ["Operating System"], Processors = Cpus_d, ["Memory (KB)"] = PhysicalMemory_d, ["Ephemeral Disk"], ["IPv4 Address(es)"] = Ipv4Addresses_s
+| sort by Computer
+| join kind= leftouter (
+   Perf
+   | where ObjectName == "LogicalDisk" or ObjectName == "Physical Disk"
+   | where InstanceName != "_Total" and InstanceName !startswith "Harddisk"
+   | summarize makeset(InstanceName) by Computer
+   | project Computer, ["Assigned Disk(s)"] = set_InstanceName
+) on Computer
+| project Computer, ["Operating System"], Processors, ["Memory (KB)"], ["Assigned Disk(s)"], ["Ephemeral Disk"], ["IPv4 Address(es)"]
+| sort by Computer asc
+```

@@ -1,5 +1,7 @@
-# Linux Syslog Queries Prerequisites
+# Linux Syslog Queries
 
-Enable Linux Syslog Collection - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-sources-syslog>
+These queries are based on the data collected from Linux Syslog.
 
-*Be patient as initial schema preparation and data ingestion will take time.*
+## Prerequisites
+
+Enable Linux Syslog Collection: <https://docs.microsoft.com/azure/azure-monitor/platform/data-sources-syslog>

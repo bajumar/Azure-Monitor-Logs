@@ -6,7 +6,7 @@ These queries are based on the data collected from Recovery Vault diagnostic log
 
 Enable Recovery Vault Diagnostic Log Forwarding: <https://azure.microsoft.com/blog/oms-monitoring-solution-for-azure-backup-using-azure-log-analytics>
 
-Optionally, add the Azure Backup Solution: <https://azure.microsoft.com/en-gb/resources/templates/101-backup-oms-monitoring>
+Optionally, add the Azure Backup Solution: <https://azure.microsoft.com/resources/templates/101-backup-oms-monitoring>
 
 
 ## About Piecharts...

@@ -10,7 +10,7 @@ The specific queries and report creation instructions are provided in each repor
 
 2. Export the query, then copy and paste the exported file contents into *Power BI Desktop*:
 
-   <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/powerbi>
+   <https://docs.microsoft.com/azure/azure-monitor/platform/powerbi>
 
    <details>
 

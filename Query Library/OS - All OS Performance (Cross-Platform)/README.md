@@ -6,10 +6,16 @@ These queries are based on the data collected from Operating System performance 
 
 Enable Performance Data Sources: <https://docs.microsoft.com/azure/azure-monitor/platform/data-sources-performance-counters>
 
-## Recommended Performance Counters for Linux
-tbd
+### Linux Performance Counters
 
-## Recommended Performance Counters for Windows
-tbd
+```
+Any counter starting with "Physical Disk(*)\"
+Any counter starting with "Processor(*)\"
+```
 
-## Remarks
+### Windows Performance Counters
+
+```
+Any counter starting with "LogicalDisk(*)\"
+Any counter starting with "Processor(*)\"
+```

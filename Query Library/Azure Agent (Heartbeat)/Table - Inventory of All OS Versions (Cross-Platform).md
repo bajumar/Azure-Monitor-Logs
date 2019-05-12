@@ -1,6 +1,5 @@
 ```
 // Table: Inventory of All OS Versions (Cross-Platform)
-// Reference: https://docs.microsoft.com/en-us/windows/desktop/SysInfo/operating-system-version
 let VersionMap = datatable (Version: string, ReleaseName:string)
 [
     "10.0", "Server 2016/2019",
