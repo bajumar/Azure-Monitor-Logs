@@ -1,3 +1,4 @@
+### Table: Most Active Users & Their Activities
 
 ```
 // Table: Most Active Users & Their Activities

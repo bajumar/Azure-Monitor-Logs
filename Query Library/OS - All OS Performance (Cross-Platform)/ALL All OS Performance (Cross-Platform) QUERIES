@@ -1,8 +1,8 @@
+// ALL All OS Performance (Cross-Platform) QUERIES
+
 
 // Table: Computer Processor Counts
-// Requires enabling at least one Windows\Linux "Processor(*)\..." performance counter
-// The required Windows counter IS NOT included in the default recommended set for Windows
-// The required Linux counter IS included in the default recommended set for Linux
+// Requires one Linux "Processor(*)\..." and one Windows "Processor(*)\..." 
 Perf
 | where ObjectName == "Processor" and InstanceName != "_Total"
 | summarize Processors = dcount(InstanceName) by Computer
@@ -10,9 +10,7 @@ Perf
 | sort by Computer asc
 
 // Table: Computer Disk Counts
-// Requires enabling at least one Windows "LogicalDisk(*)\..." and Linux "Physical Disk(*)\..." performance counter
-// The required Windows counter IS included in the default recommended set for Windows
-// The required Linux counter IS NOT included in the default recommended set for Linux
+// Requires one Linux "Physical Disk(*)\..." and one Windows "LogicalDisk(*)\..."
 Perf
 | where ObjectName == "LogicalDisk" or ObjectName == "Physical Disk"
 | where InstanceName != "_Total" and InstanceName !startswith "Harddisk"
@@ -21,9 +19,7 @@ Perf
 | sort by Computer asc
 
 // Table: Computer Disk Enumeration
-// Requires enabling at least one Windows "LogicalDisk(*)\..." and Linux "Physical Disk(*)\..." performance counter
-// The required Windows counter IS included in the default recommended set for Windows
-// The required Linux counter IS NOT included in the default recommended set for Linux
+// Requires one Linux "Physical Disk(*)\..." and one Windows "LogicalDisk(*)\..."
 Perf
 | where ObjectName == "LogicalDisk" or ObjectName == "Physical Disk"
 | where InstanceName != "_Total" and InstanceName !startswith "Harddisk"

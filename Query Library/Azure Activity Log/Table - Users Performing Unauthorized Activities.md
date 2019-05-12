@@ -1,3 +1,5 @@
+### Table: Users Performing Unauthorized Activities
+
 ```
 // Table: Users Performing Unauthorized Activities
 AzureActivity
