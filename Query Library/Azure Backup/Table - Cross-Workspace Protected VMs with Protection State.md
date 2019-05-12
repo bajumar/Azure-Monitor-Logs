@@ -1,3 +1,5 @@
+### Table: Cross-Workspace Protected VMs with Protection State
+
 ```
 // Table: Cross-Workspace Protected VMs with Protection State
 // Replace workspaceName with a valid Workspace Name, between the quotation marks

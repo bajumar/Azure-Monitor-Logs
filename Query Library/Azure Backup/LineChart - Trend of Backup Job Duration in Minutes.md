@@ -1,3 +1,5 @@
+### LineChart: Trend of Backup Job Duration in Minutes
+
 ```
 // LineChart: Trend of Backup Job Duration in Minutes
 AzureDiagnostics

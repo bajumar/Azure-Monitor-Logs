@@ -1,3 +1,5 @@
+### LineChart: Trend of MB Data Transferred per Backup Job
+
 ```
 // LineChart: Trend of MB Data Transferred per Backup Job
 AzureDiagnostics

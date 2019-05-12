@@ -1,3 +1,5 @@
+### Table: Protected Sources with Protection State
+
 ```
 // Table: Protected Sources with Protection State
 AzureDiagnostics

@@ -1,3 +1,5 @@
+### LineChart: Trend of Subscription (by ID) Storage Consumption
+
 ```
 // LineChart: Trend of Subscription (by ID) Storage Consumption
 AzureDiagnostics

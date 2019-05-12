@@ -1,3 +1,5 @@
+### LineChart: Trend of Recovery Vault Storage Consumption
+
 ```
 // LineChart: Trend of Recovery Vault Storage Consumption
 AzureDiagnostics

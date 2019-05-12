@@ -1,3 +1,5 @@
+### BarChart: Failed Windows Update Attempts
+
 ```
 // BarChart: Failed Windows Update Attempts
 Event

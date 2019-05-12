@@ -1,5 +1,7 @@
+### Table: Computer Disk Enumeration
+
 ```
-// Perf-Table: Computer Disk Enumeration
+// Table: Computer Disk Enumeration
 // Requires one Linux "Physical Disk(*)\..." and one Windows "LogicalDisk(*)\..."
 Perf
 | where ObjectName == "Physical Disk" or ObjectName == "LogicalDisk"

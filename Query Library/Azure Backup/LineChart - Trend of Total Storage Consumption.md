@@ -1,3 +1,5 @@
+### LineChart: Trend of Total Storage Consumption
+
 ```
 // LineChart: Trend of Total Storage Consumption
 AzureDiagnostics

@@ -1,3 +1,5 @@
+### Table: Backup Job Duration in Minutes
+
 ```
 // Table: Backup Job Duration in Minutes
 AzureDiagnostics

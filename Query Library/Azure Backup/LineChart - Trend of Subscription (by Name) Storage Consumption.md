@@ -1,3 +1,5 @@
+### LineChart: Trend of Subscription (by Name) Storage Consumption
+
 ```
 // LineChart: Trend of Subscription (by Name) Storage Consumption
 // Replace subscriptionGUID and subscriptionFriendlyName with a valid Subscription GUID and Name, between the quoation marks

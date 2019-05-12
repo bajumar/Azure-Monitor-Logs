@@ -1,6 +1,7 @@
+### PieChart: Computer Region Locations
+
 ```
 // PieChart: Computer Region Locations
-// Before saving or pinning, enable the "Split By" values of your preference to make the visulaization more impactful
 ServiceMapComputer_CL
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer
 | extend ["Operating System"]= extract("([^,]+$)", 1, OperatingSystemFullName_s)

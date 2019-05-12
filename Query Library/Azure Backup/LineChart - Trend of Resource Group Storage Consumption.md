@@ -1,3 +1,5 @@
+### LineChart: Trend of Resource Group Storage Consumption
+
 ```
 // LineChart: Trend of Resource Group Storage Consumption
 AzureDiagnostics

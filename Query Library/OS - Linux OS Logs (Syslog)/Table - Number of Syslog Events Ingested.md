@@ -1,3 +1,5 @@
+### Table: Number of Syslog Events Ingested
+
 ```
 // Table: Number of Syslog Events Ingested
 Syslog

@@ -1,5 +1,7 @@
+### Table: Computer Disk Counts
+
 ```
-// Perf-Table: Computer Disk Counts
+// Table: Computer Disk Counts
 // Requires one Linux "Physical Disk(*)\..." and one Windows "LogicalDisk(*)\..."
 Perf
 | where ObjectName == "Physical Disk" or ObjectName == "LogicalDisk"

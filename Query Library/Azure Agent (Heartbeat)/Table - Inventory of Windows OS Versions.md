@@ -1,3 +1,5 @@
+### Table: Inventory of Windows OS Versions
+
 ```
 // Table: Inventory of Windows OS Versions
 let VersionMap = datatable (Version: string, ReleaseName:string)

@@ -1,5 +1,7 @@
+### Table: Computer Processor Counts
+
 ```
-// Perf-Table: Computer Processor Counts
+// Table: Computer Processor Counts
 // Requires one Linux "Processor(*)\..." and one Windows "Processor(*)\..." 
 Perf
 | where ObjectName == "Processor" and InstanceName != "_Total"

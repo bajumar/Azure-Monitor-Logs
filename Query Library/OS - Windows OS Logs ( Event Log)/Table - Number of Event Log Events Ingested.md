@@ -1,3 +1,5 @@
+### Table: Number of Event Log Events Ingested
+
 ```
 // Table: Number of Event Log Events Ingested
 Event

@@ -1,6 +1,7 @@
+### Table: Computer Hardware Configurations
+
 ```
 // Table: Computer Hardware Configurations
-// Requires one Linux "Physical Disk(*)\..." and one Windows "LogicalDisk(*)\..."
 ServiceMapComputer_CL
 | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer
 | extend ["Operating System"]= extract("([^,]+$)", 1, OperatingSystemFullName_s)

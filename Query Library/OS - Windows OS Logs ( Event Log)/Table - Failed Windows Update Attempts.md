@@ -1,3 +1,5 @@
+### Table: Failed Windows Update Attempts
+
 ```
 // Table: Failed Windows Update Attempts
 Event
