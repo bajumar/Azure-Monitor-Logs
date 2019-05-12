@@ -8,14 +8,10 @@ Enable Performance Data Sources: <https://docs.microsoft.com/azure/azure-monitor
 
 ### Linux Performance Counters
 
-```
-Any counter starting with "Physical Disk(*)\"
-Any counter starting with "Processor(*)\"
-```
+Any counter starting with ```Physical Disk(*)\```
+Any counter starting with ```Processor(*)\```
 
 ### Windows Performance Counters
 
-```
-Any counter starting with "LogicalDisk(*)\"
-Any counter starting with "Processor(*)\"
-```
+Any counter starting with ```LogicalDisk(*)\```
+Any counter starting with ```Processor(*)\```
