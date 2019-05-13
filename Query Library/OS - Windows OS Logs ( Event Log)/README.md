@@ -10,3 +10,6 @@ Enable Windows Event Log Collection: <https://docs.microsoft.com/azure/azure-mon
 
 The first "where" filter in each query identifies the required Event Log, Event Source, and Event Level.
 
+## Snippet Documents
+
+Documents prefixed with *"Snippet"* contain useful re-usable code samples that you can use in your own queries to simplify query creation.

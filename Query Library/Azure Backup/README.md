@@ -8,6 +8,9 @@ Enable Recovery Vault Diagnostic Log Forwarding: <https://azure.microsoft.com/bl
 
 Optionally, add the Azure Backup Solution: <https://azure.microsoft.com/resources/templates/101-backup-oms-monitoring>
 
+## Snippet Documents
+
+Documents prefixed with *"Snippet"* contain useful re-usable code samples that you can use in your own queries to simplify query creation.
 
 ## About Piecharts...
 
