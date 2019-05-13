@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-Enable the Azure Wire Data solution: <https://docs.microsoft.com/azure/azure-monitor/insights/wire-data>
+Enable the Wire Data solution: <https://docs.microsoft.com/azure/azure-monitor/insights/wire-data>
 
 ## Building the Report
 

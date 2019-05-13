@@ -23,4 +23,58 @@ Event
 | summarize Attempts = count() by Computer, KBID, Description
 | render barchart kind = unstacked
 
+// Table: System Uptime
+Event
+| where EventLog == "System" and Source == "EventLog" and EventLevelName == "Information"
+| where EventID == "6013"
+| summarize arg_max(TimeGenerated, *) by Computer
+| extend InSeconds = extract("The system uptime is (.*?) seconds.", 1, RenderedDescription, typeof(double))
+| extend Days = toint(InSeconds/60/60/24)
+| extend Hours = toint((InSeconds/60/60)-(Days*24))
+| extend Minutes = toint((InSeconds/60)-(Days*24*60)-(Hours*60))
+| extend Seconds = toint(InSeconds-(Days*24*60*60)-(Hours*60*60)-(Minutes*60))
+| project Computer, InSeconds , Days, Hours, Minutes, Seconds
+| sort by Computer asc
+
+// Table: Last Shutdown & Startup
+Event
+| where EventLog == "System" and Source == "EventLog" and EventLevelName == "Information" or EventLevelName == "Error"
+| where EventID == "6006" or EventID == "6008"
+| summarize Shutdown = arg_max(TimeGenerated, *) by Computer
+| extend State = iff(EventID == "6006", "Clean Shutdown", "Unexpected Shutdown")
+| project Computer, State, Shutdown
+| join kind = leftouter (
+  Event
+  | where EventLog == "System" and Source == "EventLog" and EventLevelName == "Information"
+  | where EventID == "6005"
+  | summarize Startup = arg_max(TimeGenerated, *) by Computer
+  | project Computer, Startup
+) on Computer
+| extend Difference = Startup - Shutdown
+|project Computer, State, Shutdown , Startup, Difference
+|sort by Computer asc
+
+// Table: Bugcheck Reboots
+Event
+| where EventLog == "System" and Source == "Microsoft-Windows-WER-SystemErrorReporting" and EventLevelName == "Error"
+| where EventID == "1001"
+| extend Bugcheck = extract("(<Param>(.*?)</Param>){1}",2,ParameterXml)
+| extend DumpFile = extract("(<Param>(.*?)</Param>){2}",2,ParameterXml)
+| extend ReportID = extract("(<Param>(.*?)</Param>){3}",2,ParameterXml)
+| project Computer, TimeGenerated, Bugcheck, DumpFile, ReportID
+| sort by Computer asc
+
+// Table: User-Initiated Shutdowns
+Event
+| where EventLog == "System" and Source == "User32" and EventLevelName == "Information"
+| where EventID == "1074"
+| extend Process = extract("(<Param>(.*?)</Param>){1}",2,ParameterXml)
+| extend Name = extract("(<Param>(.*?)</Param>){2}",2,ParameterXml)
+| extend Reason = extract("(<Param>(.*?)</Param>){3}",2,ParameterXml)
+| extend ReasonCode = extract("(<Param>(.*?)</Param>){4}",2,ParameterXml)
+| extend ShutdownType = extract("(<Param>(.*?)</Param>){5}",2,ParameterXml)
+| extend Comment = extract("(<Param>(.*?)</Param>){6}",2,ParameterXml)
+| extend UserID = extract("(<Param>(.*?)</Param>){7}",2,ParameterXml)
+| project Computer, TimeGenerated, ShutdownType, UserID, Process, Reason, Comment
+| sort by Computer asc
 

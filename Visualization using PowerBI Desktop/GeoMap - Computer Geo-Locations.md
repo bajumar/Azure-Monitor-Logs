@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-None.
+Install the Agent: <https://docs.microsoft.com/azure/azure-monitor/platform/log-analytics-agent>
 
 ## Building the Report
 
