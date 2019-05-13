@@ -8,14 +8,11 @@ Enable Service Map: <https://docs.microsoft.com/azure/azure-monitor/insights/ser
 
 Enable Performance Data Sources: <https://docs.microsoft.com/azure/azure-monitor/platform/data-sources-performance-counters>
 
-### Linux Performance Counters
+### Performance Counters Used in the Query Examples
 
-Any counter starting with ```Physical Disk(*)\```
-
-### Windows Performance Counters
-
-Any counter starting with ```LogicalDisk(*)\```
-
+| Query Scenario | Linux | Windows |
+| --- | --- | --- |
+| Count & Enumerate Disks | Any ```Physical Disk(*)\``` | Any ```LogicalDisk(*)\``` |
 
 ## Remarks
 

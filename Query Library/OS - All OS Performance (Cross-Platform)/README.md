@@ -6,14 +6,13 @@ These queries are based on the data collected from Operating System performance 
 
 Enable Performance Data Sources: <https://docs.microsoft.com/azure/azure-monitor/platform/data-sources-performance-counters>
 
-### Linux Performance Counters
+### Performance Counters Used in the Query Examples
 
-Any counter starting with ```Physical Disk(*)\```
+| Query Scenario | Linux | Windows |
+| --- | --- | --- |
+| Count CPUs | Any ```Processor(*)\``` | Any ```Processor(*)\``` |
+| Count & Enumerate Disks | Any ```Physical Disk(*)\``` | Any ```LogicalDisk(*)\``` |
+| Process-Level CPU Utilization | ```Process(*)\Pct User Time``` | ```Process(*)\% Processor Time```|
+| | ```Process(*)\Pct Privileged Time``` | |
+| Process-Level Memory Utilization | ```Process(*)\Used Memory``` | ```Process(*)\Working Set``` |
 
-Any counter starting with ```Processor(*)\```
-
-### Windows Performance Counters
-
-Any counter starting with ```LogicalDisk(*)\```
-
-Any counter starting with ```Processor(*)\```
