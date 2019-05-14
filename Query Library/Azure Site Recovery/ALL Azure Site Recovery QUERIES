@@ -15,24 +15,6 @@ AzureDiagnostics
 | summarize ["Churn Minus Upload Delta (KB)"] = sum(DataChurnKB-DataUploadKB) by TimeGenerated, ComputerName, VaultName, VaultResourceGroup
 | render timechart
 
-// LineChart: Trend of Raw Churn-Upload Delta
-AzureDiagnostics
-| where Category == "AzureSiteRecoveryProtectedDiskDataChurn"
-| extend DataChurnKB = toint(Value_s)/1024
-| project DataChurnKB, TimeGenerated, InstanceName_s, Resource, ResourceGroup
-| join kind = leftouter (
-  AzureDiagnostics
-  | where Category == "AzureSiteRecoveryReplicationDataUploadRate"
-  | extend DataUploadKB = toint(Value_s)/1024
-  | project DataUploadKB, TimeGenerated, InstanceName_s, Resource, ResourceGroup
-) on InstanceName_s
-| extend ComputerName = extract("(.*?):",1, InstanceName_s)
-| extend VaultName = Resource
-| extend VaultResourceGroup = ResourceGroup
-| extend ["Churn Minus Upload Delta (KB)"] = (DataChurnKB-DataUploadKB)
-| project ["Churn Minus Upload Delta (KB)"], TimeGenerated, ComputerName, VaultName, VaultResourceGroup
-| render timechart
-
 // LineChart: Trend of Average Disk Data Churn
 AzureDiagnostics
 | where Category == "AzureSiteRecoveryProtectedDiskDataChurn"
