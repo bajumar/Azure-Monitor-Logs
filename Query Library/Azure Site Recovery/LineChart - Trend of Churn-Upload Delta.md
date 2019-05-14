@@ -9,7 +9,7 @@ AzureDiagnostics
   AzureDiagnostics
   | where Category == "AzureSiteRecoveryReplicationDataUploadRate"
   | summarize DataUploadKB = avg(toint(Value_s)/1024) by TimeGenerated, InstanceName_s, Resource, ResourceGroup
-) on TimeGenerated
+) on TimeGenerated, InstanceName_s
 | extend ComputerName = extract("(.*?):",1, InstanceName_s)
 | extend VaultName = Resource
 | extend VaultResourceGroup = ResourceGroup
@@ -35,7 +35,7 @@ The Delta value should normalize near zero over time:
 
 + Positive values indicate that the local disk is writing more data than the Site Recovery Agent is able to transmit to the Recovery Vault.
 
-+ Negative values indicate that the Site Recovery Agent is "catching-up" as it transmits more data than is being written to the local disk.
++ Negative values indicate that the Site Recovery Agent is able to upload more data than is being written to the local disk, thus allowing the replication process to "catch-up" with the Churn data volume.
 
 The occasional positive spike in the Delta should not be cause for alarm, but a sustained or increasing positive value could be caused by one or more of the following issues:
 

@@ -8,7 +8,7 @@ AzureDiagnostics
   AzureDiagnostics
   | where Category == "AzureSiteRecoveryReplicationDataUploadRate"
   | summarize DataUploadKB = avg(toint(Value_s)/1024) by TimeGenerated, InstanceName_s, Resource, ResourceGroup
-) on TimeGenerated
+) on TimeGenerated, InstanceName_s
 | extend ComputerName = extract("(.*?):",1, InstanceName_s)
 | extend VaultName = Resource
 | extend VaultResourceGroup = ResourceGroup
