@@ -6,7 +6,7 @@ AzureActivity
 | summarize Activities = count() by Caller, OperationName
 | sort by Activities
 
-// Table: Users Performing Unauthorized Activities
+// Table: Users Attempting Unauthorized Activities
 AzureActivity
 | where ActivitySubstatus == "Unauthorized" and Caller has "@"
 | extend eventProperties = parse_json(Properties)

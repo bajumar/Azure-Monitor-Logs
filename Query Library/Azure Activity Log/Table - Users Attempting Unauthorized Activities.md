@@ -1,7 +1,7 @@
-### Table: Users Performing Unauthorized Activities
+### Table: Users Attempting Unauthorized Activities
 
 ```
-// Table: Users Performing Unauthorized Activities
+// Table: Users Attempting Unauthorized Activities
 AzureActivity
 | where ActivitySubstatus == "Unauthorized" and Caller has "@"
 | extend eventProperties = parse_json(Properties)
