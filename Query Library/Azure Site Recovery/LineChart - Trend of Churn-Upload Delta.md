@@ -31,7 +31,7 @@ The Delta value is plotted in a line chart measured over time (timechart type), 
 
 ### Why is this useful?
 
-The Delta value should normalize near or at zero over time under normal conditions:
+The Delta value should normalize near zero over time:
 
 + Positive values indicate that the local disk is writing more data than the Site Recovery Agent is able to transmit to the Recovery Vault.
 
@@ -43,4 +43,4 @@ The occasional positive spike in the Delta should not be cause for alarm, but a 
 | --- | --- | 
 | Network communication to the Recovery Vault is blocked or bandwidth is constrained. | Verify there are no firewalls blocking access or routers redirecting traffic, and review any bandwidth throttling or allocation rules. |
 | The application or connected client activity is overwhelming the local disk. | Verify that local disk activity is within expected operational parameters. |
-| The storage layer underpinning the Recovery vault is slower than your infrastructure requires. | Consider upgrading to Premium Storage. |
+| The storage layer underpinning the Recovery Vault is slower than your infrastructure requires. | Consider upgrading to Premium Storage. |
