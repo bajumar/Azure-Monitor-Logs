@@ -1,5 +1,20 @@
 // ALL Azure Site Recovery QUERIES
 
+// LineChart: Trend of Churn-Upload Delta
+AzureDiagnostics
+| where Category == "AzureSiteRecoveryProtectedDiskDataChurn"
+| summarize DataChurnKB = max(toint(Value_s)/1024) by TimeGenerated, InstanceName_s, Resource, ResourceGroup
+| join kind = leftouter (
+  AzureDiagnostics
+  | where Category == "AzureSiteRecoveryReplicationDataUploadRate"
+  | summarize DataUploadKB = max(toint(Value_s)/1024) by TimeGenerated, InstanceName_s, Resource, ResourceGroup
+) on TimeGenerated
+| extend ComputerName = extract("(.*?):",1, InstanceName_s)
+| extend VaultName = Resource
+| extend VaultResourceGroup = ResourceGroup
+| summarize ["Churn Minus Upload Delta (KB)"] = sum(DataChurnKB-DataUploadKB) by TimeGenerated, ComputerName, VaultName, VaultResourceGroup
+| render timechart
+
 // LineChart: Trend of Disk Data Churn
 AzureDiagnostics
 | where Category == "AzureSiteRecoveryProtectedDiskDataChurn"
@@ -28,4 +43,36 @@ AzureDiagnostics
 | extend VaultResourceGroup = ResourceGroup
 | summarize FailureCount = count(ResultType) by ComputerName, ComputerType, SourceSystem, OperationName, VaultName, VaultResourceGroup
 | sort by ComputerName asc, OperationName asc
+
+// Table: Failover Health Errors
+AzureDiagnostics
+| where Category == "AzureSiteRecoveryReplicatedItems"
+| where failoverHealth_s != "Normal"
+| summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by name_s
+| mvexpand d = parsejson(failoverHealthErrors_s)
+| extend errorCategory = tostring(d.errorCategory)
+| extend errorCode = tostring(d.errorCode)
+| extend errorLevel = tostring(d.errorLevel)
+| extend errorMessage = tostring(d.errorMessage)
+| extend creationTime = tostring(d.creationTime)
+| extend possibleCauses = tostring(d.possibleCauses)
+| extend recommendation = tostring(d.recommendation)
+| project ComputerName = name_s, errorCategory, errorCode, errorLevel, errorMessage, creationTime, recommendation
+| sort by errorLevel asc, ComputerName asc
+
+// Table: Replication Health Errors
+AzureDiagnostics
+| where Category == "AzureSiteRecoveryReplicatedItems"
+| where replicationHealth_s != "Normal"
+| summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by name_s
+| mvexpand d = parsejson(replicationHealthErrors_s)
+| extend errorCategory = tostring(d.errorCategory)
+| extend errorCode = tostring(d.errorCode)
+| extend errorLevel = tostring(d.errorLevel)
+| extend errorMessage = tostring(d.errorMessage)
+| extend creationTime = tostring(d.creationTime)
+| extend possibleCauses = tostring(d.possibleCauses)
+| extend recommendation = tostring(d.recommendation)
+| project ComputerName = name_s, errorCategory, errorCode, errorLevel, errorMessage, creationTime, possibleCauses, recommendation
+| sort by errorLevel asc, ComputerName asc
 
