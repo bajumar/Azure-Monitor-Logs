@@ -3,11 +3,11 @@
 // LineChart: Trend of Churn-Upload Delta
 AzureDiagnostics
 | where Category == "AzureSiteRecoveryProtectedDiskDataChurn"
-| summarize DataChurnKB = max(toint(Value_s)/1024) by TimeGenerated, InstanceName_s, Resource, ResourceGroup
+| summarize DataChurnKB = avg(toint(Value_s)/1024) by TimeGenerated, InstanceName_s, Resource, ResourceGroup
 | join kind = leftouter (
   AzureDiagnostics
   | where Category == "AzureSiteRecoveryReplicationDataUploadRate"
-  | summarize DataUploadKB = max(toint(Value_s)/1024) by TimeGenerated, InstanceName_s, Resource, ResourceGroup
+  | summarize DataUploadKB = avg(toint(Value_s)/1024) by TimeGenerated, InstanceName_s, Resource, ResourceGroup
 ) on TimeGenerated
 | extend ComputerName = extract("(.*?):",1, InstanceName_s)
 | extend VaultName = Resource
@@ -21,7 +21,7 @@ AzureDiagnostics
 | extend ComputerName = extract("(.*?):",1, InstanceName_s)
 | extend VaultName = Resource
 | extend VaultResourceGroup = ResourceGroup
-| summarize DataChurnKB = max(toint(Value_s)/1024) by TimeGenerated, ComputerName, VaultName, VaultResourceGroup
+| summarize DataChurnKB = avg(toint(Value_s)/1024) by TimeGenerated, ComputerName, VaultName, VaultResourceGroup
 | render timechart
 
 // PieChart: Proportion of Disk Data Churn
