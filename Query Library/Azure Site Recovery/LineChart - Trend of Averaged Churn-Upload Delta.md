@@ -1,7 +1,7 @@
-## LineChart: Trend of Churn-Upload Delta
+## LineChart: Trend of Averaged Churn-Upload Delta
 
 ```
-// LineChart: Trend of Churn-Upload Delta
+// LineChart: Trend of Averaged Churn-Upload Delta
 AzureDiagnostics
 | where Category == "AzureSiteRecoveryProtectedDiskDataChurn"
 | summarize DataChurnKB = avg(toint(Value_s)/1024) by TimeGenerated, InstanceName_s, Resource, ResourceGroup
@@ -25,7 +25,7 @@ AzureDiagnostics
 
 The query calculates the delta between them using the formula:
 
-```Delta = Average Disk Data Churn KB - Replication Data Upload Rate KB```
+```Delta = Average Disk Data Churn KB - Average Replication Data Upload Rate KB```
 
 The Delta value is plotted in a line chart measured over time (timechart type), indicating the efficiency of the the replication process and general stability of the environment required for replication.
 

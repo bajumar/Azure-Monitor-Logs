@@ -1,27 +1,27 @@
-## LineChart: Trend of Disk Data Churn
+## PieChart: Proportion of Average Disk Data Churn
 
 ```
-// LineChart: Trend of Disk Data Churn
+// PieChart: Proportion of Average Disk Data Churn
 AzureDiagnostics
 | where Category == "AzureSiteRecoveryProtectedDiskDataChurn"
 | extend ComputerName = extract("(.*?):",1, InstanceName_s)
 | extend VaultName = Resource
 | extend VaultResourceGroup = ResourceGroup
 | summarize DataChurnKB = avg(toint(Value_s)/1024) by TimeGenerated, ComputerName, VaultName, VaultResourceGroup
-| render timechart
+| render piechart
 ```
 
 ### What are the key metrics?
 
 **Protected Disk Data Churn** is the rate of change in data volume written to a computer's local disk (how much data is written in a given time period), measured in Bytes. This is converted to KB in the query.
 
-The data is plotted in a line chart measured over time (timechart type), indicating which computers generate the most Churn and the volume of that Churn in a given time period.
+The data is plotted in a pie chart, indication the proportion of total Churn data volume each computer contributes.
 
 ### Why is this useful?
 
 Computers which generate a significant amount of Churn impact the efficiency of replication. The replication process may need to consume more bandwidth and/or take longer to process the changed data before a computer reaches "steady-state" to execute a successful planned failover.
 
-The occasional spike in volume should not be cause for alarm, but a sustained or increasing value could be caused by one or more of the following issues:
+If there appears to be a computer producing a disproportionate amount of Churn data volume relative to its workload peers, the behaviour be caused by one or more of the following issues:
 
 | Possible Issue | What to Investigate |
 | --- | --- | 
