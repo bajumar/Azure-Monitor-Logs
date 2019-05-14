@@ -19,7 +19,7 @@ The data is plotted in a pie chart, indication the proportion of total Churn dat
 
 ### Why is this useful?
 
-Computers that generate a significant amount of Churn impacts the efficiency of replication. The replication process may need to consume more bandwidth and/or take longer to process the changed data before a computer reaches "steady-state" to execute a successful planned failover.
+Computers which generate a significant amount of Churn impact the efficiency of replication. The replication process may need to consume more bandwidth and/or take longer to process the changed data before a computer reaches "steady-state" to execute a successful planned failover.
 
 If there appears to be a computer producing a disproportionate amount of Churn data volume relative to its workload peers, the behaviour be caused by one or more of the following issues:
 
